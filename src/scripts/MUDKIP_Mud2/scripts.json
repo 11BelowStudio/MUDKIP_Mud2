@@ -1,5 +1,22 @@
 [
   {
+    "name":"MUDKIP_Mud2",
+    "isActive": "yes",
+    "isFolder": "yes",
+    "eventHandlerList": [
+      
+    ],
+    "children": [
+      {
+        "name":"UI",
+        "isActive":"yes",
+        "eventHandlerList": [
+          
+        ]
+      }
+    ]
+  },
+  {
     "name": "MUDKIP_Mud2_example_script",
     "eventHandlerList": [
       "sysInstall"
