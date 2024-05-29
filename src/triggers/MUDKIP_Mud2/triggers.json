@@ -1,67 +1,139 @@
 [
   {
-    "name": "Rats",
+    "name": "MUDKIP_Mud2",
     "isFolder": "yes",
     "children": [
       {
-        "name": "Rat in",
+        "name": "auto_fes_in_tearoom",
+        "isActive": "yes",
+        "multiline": "yes",
+        "filter": "yes",
         "patterns": [
           {
-            "pattern": "^With a squeak, an? .*rat darts into the room, looking about wildly.$",
-            "type": "regex"
+            "pattern":"10,0",
+            "type": "color"
           },
           {
-            "pattern": "^Your eyes are drawn to an? .*rat that darts suddenly into view.$",
-            "type": "regex"
-          },
-          {
-            "pattern": "^An? .*rat wanders into view, nosing about for food.$",
-            "type": "regex"
-          },
-          {
-            "pattern": "^An? .*rat noses its way cautiously out of the shadows.$",
-            "type": "regex"
+            "pattern":"Elizabethan tearoom",
+            "type":"startOfLine"
           }
-        ],
-        "script": "echo('rat entered!')"
+        ]
       },
       {
-        "name": "Rat out",
+        "name": "dreamword_finder",
+        "isActive": "yes",
+        "multiline": "yes",
+        "filter": "yes",
         "patterns": [
           {
-            "pattern": "^An? .*rat darts into the shadows and disappears.$",
-            "type": "regex"
+            "pattern":"0,6",
+            "type": "color"
           },
           {
-            "pattern": "^An? .*rat wanders back into its warren where you may not follow.$",
-            "type": "regex"
+            "pattern":"(?<=\")(?<dreamword>\\w+)(?=\")",
+            "type":"regex"
+          }
+        ]
+      },
+      {
+        "name": "dreamword_said",
+        "isActive": "yes",
+        "multiline": "yes",
+        "filter": "yes",
+        "patterns": [
+          {
+            "pattern":"0,6",
+            "type": "color"
           },
           {
-            "pattern": "^With a flick of its small whiskers, an? .*rat dashes out of view.$",
+            "pattern":"A pleasant warmness courses through your veins...",
+            "type":"exactMatch"
+          }
+        ]
+      },
+      {
+        "name": "fes_stuff",
+        "isActive": "yes",
+        "patterns": [
+          {
+            "pattern":"^(\\*)?(?<sta>\\d+) (?<maxSta>\\d+) (?<effStr>\\d+) (?<str>\\d+) (?<effDex>\\d+) (?<dex>\\d+) (?<mag>\\d+) (?<maxMag>\\d+) (?<pts>\\d+) (?<blind>[YN]) (?<deaf>[YN]) (?<crip>[YN]) (?<dumb>[YN]) (?<mins>\\d+) (?<weather>\\w+)$",
             "type": "regex"
           }
         ]
-      }
-    ]
-  },
-  {
-    "name": "Equilibrium",
-    "highlight": "yes",
-    "highlightFG": "#00aa7f",
-    "highlightBG": "#aa00ff",
-    "patterns":[
+      },
       {
-        "pattern": "Regained Equilibrium",
-        "type": "substring"
-      }
-    ]
-  },
-  {
-    "name": "Everything green",
-    "patterns": [
+        "name": "mudkip_mud2_on_prompt",
+        "isActive": "yes",
+        "multiline": "yes",
+        "patterns": [
+          {
+            "pattern":"4,0",
+            "type": "color"
+          },
+          {
+            "pattern":"*",
+            "type":"exactMatch"
+          }
+        ]
+      },
       {
-        "pattern": "2,0",
-        "type": "color"
+        "name":"not_updating_persona",
+        "isActive": "no",
+        "multiline": "yes",
+        "filter": "yes",
+        "patterns": [
+          {
+            "pattern":"1,0",
+            "type": "color"
+          },
+          {
+            "pattern":"Not updating persona.",
+            "type":"exactMatch"
+          }
+        ]
+      },
+      {
+        "name": "points_updates",
+        "isActive": "yes",
+        "patterns": [
+          {
+            "pattern":"^(\\*)?\\(Persona saved on (?<pts>\\d+(,\\d+)*)\\).$",
+            "type": "regex"
+          },
+          {
+            "pattern":"^(\\*)?\\(Persona saved on [-+]\\d+(,\\d+)* = (?<pts>\\d+(,\\d+)*)\\).$",
+            "type": "regex"
+          }
+        ]
+      },
+      {
+        "name": "qs_stuff",
+        "isActive": "yes",
+        "patterns": [
+          {
+            "pattern":"^(\\*)?eff str (?<effStr>\\d+)\\h*eff dex (?<effDex>\\d+)\\h*sta (?<sta>\\d+)/(?<maxSta>\\d+)\\h*(mag (?<mag>)\\h*)?pts (?<pts>\\d+(,\\d+)*).*$",
+            "type": "regex"
+          }
+        ]
+      },
+
+      {
+        "name": "stam_updates",
+        "isActive": "yes",
+        "patterns": [
+          {
+            "pattern":"^(\\*)?Your stamina has fallen from \\d+ to (?<stam>\\d+)\\.$",
+            "type": "regex"
+          },
+          {
+            "pattern":"^(\\*)?Stamina=(?<stam>\\d+)/(?<maxStam>\\d+)\\.$",
+            "type": "regex"
+          },
+          {
+            "pattern":"^(\\*)?Your stamina is (?<stam>\\d+)\\.$",
+            "type": "regex"
+          }
+        ]
       }
     ]
   }

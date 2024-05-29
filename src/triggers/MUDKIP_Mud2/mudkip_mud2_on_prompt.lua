@@ -1,0 +1,1 @@
+raiseEvent("MUDKIP_Mud2 on prompt")

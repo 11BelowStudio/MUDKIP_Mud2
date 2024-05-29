@@ -1,0 +1,1 @@
+MUDKIP_Mud2:updateStam(matches.stam, matches.maxStam)
