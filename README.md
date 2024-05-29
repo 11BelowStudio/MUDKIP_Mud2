@@ -1,6 +1,6 @@
 # MUDKIP_Mud2
 
-## Multi User Dungen Kool Information Panels (for playing MUD2 in Mudlet)
+## Multi User Dungeon Kool Information Panels (for playing MUD2 with Mudlet)
 
 This is a template project created by muddler. It's meant to give you the basic skeleton to get started.
 It is not a complete project, nor does it provide an example of every type of trigger scenario or keybinding corner case. It would make it even more difficult to clear out to make way for your own items.
