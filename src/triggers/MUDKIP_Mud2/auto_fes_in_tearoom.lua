@@ -1,2 +1,2 @@
 -- this sends a fes within the tearoom I guess
-send("-[fes-]",false)
+send("\033-[FES\033-]",false)

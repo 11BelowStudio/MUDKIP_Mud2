@@ -1,4 +1,4 @@
 --if getCmdLine() == "" then
-send("-[fes-]")
+send("\033-[FES\033-]")
 --cecho(f("just did fes"))
 --end
