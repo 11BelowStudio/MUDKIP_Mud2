@@ -1,140 +1,132 @@
 [
   {
-    "name": "MUDKIP_Mud2",
+    "name": "auto_fes_in_tearoom",
     "isActive": "yes",
-    "isFolder": "yes",
-    "children": [
+    "multiline": "yes",
+    "filter": "yes",
+    "patterns": [
       {
-        "name": "auto_fes_in_tearoom",
-        "isActive": "yes",
-        "multiline": "yes",
-        "filter": "yes",
-        "patterns": [
-          {
-            "pattern":"10,0",
-            "type": "color"
-          },
-          {
-            "pattern":"Elizabethan tearoom",
-            "type":"startOfLine"
-          }
-        ]
+        "pattern":"10,0",
+        "type": "color"
       },
       {
-        "name": "dreamword_finder",
-        "isActive": "yes",
-        "multiline": "yes",
-        "filter": "yes",
-        "patterns": [
-          {
-            "pattern":"0,6",
-            "type": "color"
-          },
-          {
-            "pattern":"(?<=\")(?<dreamword>\\w+)(?=\")",
-            "type":"regex"
-          }
-        ]
+        "pattern":"Elizabethan tearoom",
+        "type":"startOfLine"
+      }
+    ]
+  },
+  {
+    "name": "dreamword_finder",
+    "isActive": "yes",
+    "multiline": "yes",
+    "filter": "yes",
+    "patterns": [
+      {
+        "pattern":"0,6",
+        "type": "color"
       },
       {
-        "name": "dreamword_said",
-        "isActive": "yes",
-        "multiline": "yes",
-        "filter": "yes",
-        "patterns": [
-          {
-            "pattern":"0,6",
-            "type": "color"
-          },
-          {
-            "pattern":"A pleasant warmness courses through your veins...",
-            "type":"exactMatch"
-          }
-        ]
+        "pattern":"(?<=\")(?<dreamword>\\w+)(?=\")",
+        "type":"regex"
+      }
+    ]
+  },
+  {
+    "name": "dreamword_said",
+    "isActive": "yes",
+    "multiline": "yes",
+    "filter": "yes",
+    "patterns": [
+      {
+        "pattern":"0,6",
+        "type": "color"
       },
       {
-        "name": "fes_stuff",
-        "isActive": "yes",
-        "patterns": [
-          {
-            "pattern":"^(\\*)?(?<sta>\\d+) (?<maxSta>\\d+) (?<effStr>\\d+) (?<str>\\d+) (?<effDex>\\d+) (?<dex>\\d+) (?<mag>\\d+) (?<maxMag>\\d+) (?<pts>\\d+) (?<blind>[YN]) (?<deaf>[YN]) (?<crip>[YN]) (?<dumb>[YN]) (?<mins>\\d+) (?<weather>\\w+)$",
-            "type": "regex"
-          }
-        ]
+        "pattern":"A pleasant warmness courses through your veins...",
+        "type":"exactMatch"
+      }
+    ]
+  },
+  {
+    "name": "fes_stuff",
+    "isActive": "yes",
+    "patterns": [
+      {
+        "pattern":"^(\\*)?(?<sta>\\d+) (?<maxSta>\\d+) (?<effStr>\\d+) (?<str>\\d+) (?<effDex>\\d+) (?<dex>\\d+) (?<mag>\\d+) (?<maxMag>\\d+) (?<pts>\\d+) (?<blind>[YN]) (?<deaf>[YN]) (?<crip>[YN]) (?<dumb>[YN]) (?<mins>\\d+) (?<weather>\\w+)$",
+        "type": "regex"
+      }
+    ]
+  },
+  {
+    "name": "MUDKIP_Mud2_on_prompt",
+    "isActive": "yes",
+    "multiline": "yes",
+    "patterns": [
+      {
+        "pattern":"4,0",
+        "type": "color"
       },
       {
-        "name": "MUDKIP_Mud2_on_prompt",
-        "isActive": "yes",
-        "multiline": "yes",
-        "patterns": [
-          {
-            "pattern":"4,0",
-            "type": "color"
-          },
-          {
-            "pattern":"*",
-            "type":"exactMatch"
-          }
-        ]
+        "pattern":"*",
+        "type":"exactMatch"
+      }
+    ]
+  },
+  {
+    "name":"not_updating_persona",
+    "isActive": "no",
+    "multiline": "yes",
+    "filter": "yes",
+    "patterns": [
+      {
+        "pattern":"1,0",
+        "type": "color"
       },
       {
-        "name":"not_updating_persona",
-        "isActive": "no",
-        "multiline": "yes",
-        "filter": "yes",
-        "patterns": [
-          {
-            "pattern":"1,0",
-            "type": "color"
-          },
-          {
-            "pattern":"Not updating persona.",
-            "type":"exactMatch"
-          }
-        ]
+        "pattern":"Not updating persona.",
+        "type":"exactMatch"
+      }
+    ]
+  },
+  {
+    "name": "points_updates",
+    "isActive": "yes",
+    "patterns": [
+      {
+        "pattern":"^(\\*)?\\(Persona saved on (?<pts>\\d+(,\\d+)*)\\).$",
+        "type": "regex"
       },
       {
-        "name": "points_updates",
-        "isActive": "yes",
-        "patterns": [
-          {
-            "pattern":"^(\\*)?\\(Persona saved on (?<pts>\\d+(,\\d+)*)\\).$",
-            "type": "regex"
-          },
-          {
-            "pattern":"^(\\*)?\\(Persona saved on [-+]\\d+(,\\d+)* = (?<pts>\\d+(,\\d+)*)\\).$",
-            "type": "regex"
-          }
-        ]
+        "pattern":"^(\\*)?\\(Persona saved on [-+]\\d+(,\\d+)* = (?<pts>\\d+(,\\d+)*)\\).$",
+        "type": "regex"
+      }
+    ]
+  },
+  {
+    "name": "qs_stuff",
+    "isActive": "yes",
+    "patterns": [
+      {
+        "pattern":"^(\\*)?eff str (?<effStr>\\d+)\\h*eff dex (?<effDex>\\d+)\\h*sta (?<sta>\\d+)/(?<maxSta>\\d+)\\h*(mag (?<mag>)\\h*)?pts (?<pts>\\d+(,\\d+)*).*$",
+        "type": "regex"
+      }
+    ]
+  },
+  {
+    "name": "stam_updates",
+    "isActive": "yes",
+    "patterns": [
+      {
+        "pattern":"^(\\*)?Your stamina has fallen from \\d+ to (?<stam>\\d+)\\.$",
+        "type": "regex"
       },
       {
-        "name": "qs_stuff",
-        "isActive": "yes",
-        "patterns": [
-          {
-            "pattern":"^(\\*)?eff str (?<effStr>\\d+)\\h*eff dex (?<effDex>\\d+)\\h*sta (?<sta>\\d+)/(?<maxSta>\\d+)\\h*(mag (?<mag>)\\h*)?pts (?<pts>\\d+(,\\d+)*).*$",
-            "type": "regex"
-          }
-        ]
+        "pattern":"^(\\*)?Stamina=(?<stam>\\d+)/(?<maxStam>\\d+)\\.$",
+        "type": "regex"
       },
-
       {
-        "name": "stam_updates",
-        "isActive": "yes",
-        "patterns": [
-          {
-            "pattern":"^(\\*)?Your stamina has fallen from \\d+ to (?<stam>\\d+)\\.$",
-            "type": "regex"
-          },
-          {
-            "pattern":"^(\\*)?Stamina=(?<stam>\\d+)/(?<maxStam>\\d+)\\.$",
-            "type": "regex"
-          },
-          {
-            "pattern":"^(\\*)?Your stamina is (?<stam>\\d+)\\.$",
-            "type": "regex"
-          }
-        ]
+        "pattern":"^(\\*)?Your stamina is (?<stam>\\d+)\\.$",
+        "type": "regex"
       }
     ]
   }
