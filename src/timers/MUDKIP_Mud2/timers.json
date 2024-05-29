@@ -1,6 +1,12 @@
 [
   {
     "name": "MUDKIP_Mud2 anti idle",
-    "minutes": "15"
+    "minutes": "15",
+    "isActive": "no"
+  },
+  {
+    "name": "MUDKIP_Mud2_autofes",
+    "seconds": "20",
+    "isActive": "no"
   }
 ]
