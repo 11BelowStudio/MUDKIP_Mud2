@@ -62,7 +62,7 @@
         ]
       },
       {
-        "name": "mudkip_mud2_on_prompt",
+        "name": "MUDKIP_Mud2_on_prompt",
         "isActive": "yes",
         "multiline": "yes",
         "patterns": [
