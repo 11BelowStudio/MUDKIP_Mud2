@@ -1,0 +1,8 @@
+[
+  {
+    "name": "MUDKIP_Mud2_example_script",
+    "eventHandlerList": [
+      "sysInstall"
+    ]
+  }
+]
