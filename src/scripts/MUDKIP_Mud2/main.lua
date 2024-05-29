@@ -1,6 +1,6 @@
 --[[
 MUDKIP for MUD2
-(Multi User Dungeon Kool Informational Panels)
+(Multi User Dungeon Kool Information Panels)
 
 ]]--
 

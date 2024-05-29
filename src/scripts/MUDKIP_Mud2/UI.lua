@@ -49,6 +49,47 @@ MUDKIP_Mud2.stambar:setColor("#00cc00")
 MUDKIP_Mud2.stambar:setText("Stamina: ?/? [Please fes or qs]")
 MUDKIP_Mud2.stambar.text:setToolTip("Pro tip: keep this above 0 to not die")
 
+--[[
+  Helper function which is given a current and max stat value,
+    and returns the stat thing as a percent,
+    and an appropriate hex colour for it (green-red gradient)
+]]--
+function MUDKIP_Mud2.ui:getPercentAndColor(_stat,_maxStat)
+  local percent = math.floor((_stat / _maxStat * 100) + 0.5)
+  local theColor = "#ff0000"
+
+  if percent <= 0 then
+    theColor =  "#ff0000"
+  elseif percent <= 5 then
+    theColor = "#ff0000"
+  elseif percent <= 10 then
+    theColor = "#ee0000"
+  elseif percent <= 20 then
+    theColor = "#cc0000"
+  elseif percent <= 25 then
+    theColor = "#aa0000"
+  elseif percent <= 30 then
+    theColor = "#880000"
+  elseif percent <= 40 then
+    theColor = "#884400"
+  elseif percent <= 50 then
+    theColor = "#886600"
+  elseif percent <= 60 then
+    theColor = "#888800"
+  elseif percent <= 70 then
+    theColor = "#668800"
+  elseif percent <= 80 then
+    theColor = "#448800"
+  elseif percent == 100 then
+    theColor = "#00d000"
+  else
+    theColor = "#00cc00"
+  end
+
+  return percent, theColor
+end
+
+
 function MUDKIP_Mud2.ui:updateStaminaBar(_stam, _maxStam)
   -- this gets the percent as an integer, rounded to the nearest whole percent
   local hpPercent = math.floor((_stam / _maxStam * 100) + 0.5)
@@ -102,6 +143,10 @@ end
 MUDKIP_Mud2.magicbar:setColor("#800080")
 MUDKIP_Mud2.magicbar:setText("Magic: ?/? [Please fes or qs]")
 MUDKIP_Mud2.magicbar.text:setToolTip("Please fes so this bar will work thanks")
+
+
+
+
 
 function MUDKIP_Mud2.ui:updateMagicBar(_mag, _maxMag)
   -- this gets the percent as an integer, rounded to the nearest whole percent
@@ -162,13 +207,27 @@ MUDKIP_Mud2.statslabel =
   Geyser.Label:new(
     {
       name = "statslabel",
-      x = "1.25%",y = 0,
+      x = 0,y = 0,
       width = "75%",height = "100%",
       bgColor = "black",
       message = "Sta:000/000&emsp;Dex:000/000 Str:000/000&emsp;Mag:000/000&emsp;Pts:000,000",
     },
     MUDKIP_Mud2.toppanel
   )
+
+
+  MUDKIP_Mud2.statslabel =
+  Geyser.Label:new(
+    {
+      name = "statslabel",
+      x = 0,y = 0,
+      width = "75%",height = "100%",
+      bgColor = "black",
+      message = "Sta:000/000&emsp;Dex:000/000 Str:000/000&emsp;Mag:000/000&emsp;Pts:000,000",
+    },
+    MUDKIP_Mud2.toppanel
+  )
+
 
 
 registerAnonymousEventHandler("MUDKIP_Mud2 on prompt", "MUDKIP_Mud2.ui:updateBars")
