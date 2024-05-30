@@ -1,21 +1,5 @@
 [
   {
-    "name": "auto_fes_in_tearoom",
-    "isActive": "yes",
-    "multiline": "yes",
-    "filter": "yes",
-    "patterns": [
-      {
-        "pattern":"10,0",
-        "type": "color"
-      },
-      {
-        "pattern":"Elizabethan tearoom",
-        "type":"startOfLine"
-      }
-    ]
-  },
-  {
     "name": "dreamword_finder",
     "isActive": "yes",
     "multiline": "yes",
@@ -58,6 +42,22 @@
     ]
   },
   {
+    "name": "in_tearoom",
+    "isActive": "yes",
+    "multiline": "yes",
+    "filter": "yes",
+    "patterns": [
+      {
+        "pattern":"10,0",
+        "type": "color"
+      },
+      {
+        "pattern":"Elizabethan tearoom",
+        "type":"startOfLine"
+      }
+    ]
+  },
+  {
     "name": "MUDKIP_Mud2_on_prompt",
     "isActive": "yes",
     "multiline": "yes",
@@ -85,6 +85,22 @@
       {
         "pattern":"Not updating persona.",
         "type":"exactMatch"
+      }
+    ]
+  },
+  {
+    "name": "out_of_game",
+    "isActive": "yes",
+    "multiline": "yes",
+    "filter": "yes",
+    "patterns": [
+      {
+        "pattern":"15,0",
+        "type": "color"
+      },
+      {
+        "pattern":"Option (H for help):",
+        "type":"startOfLine"
       }
     ]
   },

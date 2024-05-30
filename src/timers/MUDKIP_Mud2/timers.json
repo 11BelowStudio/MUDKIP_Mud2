@@ -8,5 +8,10 @@
     "name": "MUDKIP_Mud2_autofes",
     "seconds": "20",
     "isActive": "no"
+  },
+  {
+    "name": "semi_auto_fes",
+    "seconds": "20",
+    "isActive": "true"
   }
 ]

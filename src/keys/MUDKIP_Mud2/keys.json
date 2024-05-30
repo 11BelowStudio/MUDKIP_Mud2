@@ -1,6 +1,7 @@
 [
   {
     "name": "Clearscreen",
-    "keys": "ctrl+shift+alt+c"
+    "keys": "ctrl+shift+alt+c",
+    "isActive": "false"
   }
 ]

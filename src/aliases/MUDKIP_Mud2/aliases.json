@@ -1,6 +1,7 @@
 [
   {
-    "name": "MUDKIP_Mud2",
-    "regex": "^MUDKIP_Mud2$"
+    "name": "semi_auto_fes",
+    "regex": "^.+$",
+    "isActive": "true"
   }
 ]

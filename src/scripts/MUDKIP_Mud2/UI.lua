@@ -239,25 +239,33 @@ MUDKIP_Mud2.leftstats =
     {
       name = "leftstats",
       x = 0,y = 0,
-      width = "67%",height = "100%",
+      width = "55%",height = "100%",
       bgColor = "black",
       message = " Sta:000/000&emsp;Dex:000/000 Str:000/000&emsp;Mag:000/000&emsp;Pts:000,000",
     },
     MUDKIP_Mud2.toppanel
   )
-
+MUDKIP_Mud2.leftstats:setStyleSheet([[
+  qproperty-alignment: 'AlignLeft | AlignVCenter';
+  qproperty-font: ]].. getFontSize() .. [[pt ]]..getFont()..[[;
+]])
 
 MUDKIP_Mud2.rightstats =
   Geyser.Label:new(
     {
       name = "rightstats",
-      x="67%",y=0,
-      width = "33%",height = "100%",
+      x="55%",y=0,
+      width = "45%",height = "100%",
       bgColor = "black",
-      message = "placeholder placeholder",
+      message = "placeholder placeholder"
     },
     MUDKIP_Mud2.toppanel
   )
+
+MUDKIP_Mud2.rightstats:setStyleSheet([[
+  qproperty-alignment: 'AlignRight | AlignVCenter';
+  qproperty-font: ]].. getFontSize() .. [[pt ]]..getFont()..[[;
+]])
 
 -- function by Paul Kulchenko
 -- https://stackoverflow.com/a/10990879
@@ -372,21 +380,36 @@ function MUDKIP_Mud2.ui:updateTheStuff()
   )
 
   local leftLabelText = string.format(
-    [[<span style="color:#008080;">
-    %s %s %s %s %s %s 
-    </span>]],
+    [[<left><p style="color:#008080;">
+    %s%s %s %s %s %s
+    </p></left>]],
     stamInfo, magicInfo, dexInfo, strInfo, ptsString, statusText(_isBlind,_isDeaf,_isCrippled,_isDumb)
   )
 
   leftStats:echo(leftLabelText)
 
-  -- and now the other label just holding the dreamword for the time being
+  -- and now the other label.
+
+  local dreamWordText = string.format(
+    '<span style="color:#000000;background-color:#008080;">%s</span>&nbsp;',
+    _dreamWord
+  )
+
+  local weatherText = string.format(
+    'Weather:<b style="color:#008000;">%s</b>&nbsp;',
+    MUDKIP_Mud2:getWeatherString()
+  )
+
+  local timeLeftText = string.format(
+    'Time:<b style="color:#008080;">%3d</b>&nbsp;',
+    _mins
+  )
 
   local rightLabelText = string.format(
-    [[<span style="color:#000000;background-color:#008080;">
-    %s
-    </span>]],
-    _dreamWord
+    [[<right><p style="color:#008080;">
+    %s&nbsp;&nbsp;&nbsp;%s&nbsp;&nbsp;&nbsp;%s 
+    </p></right>]],
+    dreamWordText, weatherText, timeLeftText
   )
 
   rightStats:echo(rightLabelText)

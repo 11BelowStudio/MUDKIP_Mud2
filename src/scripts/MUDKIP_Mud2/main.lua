@@ -129,4 +129,53 @@ if not MUDKIP_Mud2 then
     M2UI:updateTheStuff()
   end
 
+  MUDKIP_Mud2._isInGame = false
+
+  MUDKIP_Mud2._shouldSemiAutoFes = false
+
+  -- use this to update whether or not the player is in game
+  function MUDKIP_Mud2:setInGame(_isInGame)
+    MUDKIP_Mud2._isInGame = _isInGame
+  end
+
+  -- returns true if currently in-game
+  function MUDKIP_Mud2:isInGame()
+    return MUDKIP_Mud2._isInGame
+  end
+
+  -- sets _shouldSemiAutoFes to true
+  function MUDKIP_Mud2:timeForSemiAutoFes()
+    MUDKIP_Mud2._shouldSemiAutoFes = true
+  end
+
+  -- obtains current _shouldSemiAutoFes, before resetting it to false
+  function MUDKIP_Mud2:checkResetSemiAutoFes()
+    local result = MUDKIP_Mud2._shouldSemiAutoFes
+    MUDKIP_Mud2._shouldSemiAutoFes = false
+    return result
+  end
+
+  -- returns the current weather as a 6-character string
+  function MUDKIP_Mud2:getWeatherString()
+    local weatherString = "Weather"
+    local _weather = M2Stats.weather
+    if _weather == "F" then
+      weatherString = "Sunny&nbsp;"
+    elseif _weather == "C" then
+      weatherString = "Cloudy"
+    elseif _weather == "R" then
+      weatherString = "Rain&nbsp;&nbsp;"
+    elseif _weather == "S" then
+      weatherString = "Snow&nbsp;&nbsp;"
+    elseif _weather == "O" then
+      weatherString = "OvCast"
+    elseif _weather == "T" then
+      weatherString = "TStorm"
+    elseif _weather == "B" then
+      weatherString = "Blizz&nbsp;"
+    end
+
+    return weatherString
+  end
+
 end
