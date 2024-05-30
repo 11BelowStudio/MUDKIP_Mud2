@@ -52,7 +52,7 @@
     "isActive": "yes",
     "patterns": [
       {
-        "pattern":"^(\\*)?(?<sta>\\d+) (?<maxSta>\\d+) (?<effStr>\\d+) (?<str>\\d+) (?<effDex>\\d+) (?<dex>\\d+) (?<mag>\\d+) (?<maxMag>\\d+) (?<pts>\\d+) (?<blind>[YN]) (?<deaf>[YN]) (?<crip>[YN]) (?<dumb>[YN]) (?<mins>\\d+) (?<weather>\\w+)$",
+        "pattern":"^(?<prefix>\\*?)(?<sta>\\d+) (?<maxSta>\\d+) (?<effStr>\\d+) (?<str>\\d+) (?<effDex>\\d+) (?<dex>\\d+) (?<mag>\\d+) (?<maxMag>\\d+) (?<pts>\\d+) (?<blind>[YN]) (?<deaf>[YN]) (?<crip>[YN]) (?<dumb>[YN]) (?<mins>\\d+) (?<weather>\\w+)$",
         "type": "regex"
       }
     ]

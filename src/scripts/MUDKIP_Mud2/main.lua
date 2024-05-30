@@ -58,7 +58,7 @@ if not MUDKIP_Mud2 then
     M2Stats.resetMins = tonumber(_mins)
     M2Stats.weather = _weather
 
-    M2UI:updateBars()
+    M2UI:updateTheStuff()
 
     --cecho("\n"..M2Stats:toStringTemp())
   end
@@ -85,7 +85,7 @@ if not MUDKIP_Mud2 then
     else
       M2Stats.magic = 0
     end
-    M2UI:updateBars()
+    M2UI:updateTheStuff()
 
     --cecho("\n"..M2Stats:toStringTemp())
   end
@@ -102,29 +102,31 @@ if not MUDKIP_Mud2 then
     end
 
     if M2Stats.stamina > M2Stats.maxStamina then
-        M2Stats.maxStamina = M2Stats.stamina
-      end
+      M2Stats.maxStamina = M2Stats.stamina
+    end
 
     --cecho("\n"..M2Stats:toStringTemp())
 
-    M2UI:updateBars()
+    M2UI:updateTheStuff()
   end
 
   -- updates known points for the persona automagically whenever points get updated 
   function MUDKIP_Mud2:updatePoints(_pts)
     M2Stats.pts = tonumber(_pts)
-
+    M2UI:updateTheStuff()
     --cecho("\n"..M2Stats:toStringTemp())
   end
 
   function MUDKIP_Mud2:setDreamword(_dreamWord)
     M2Stats.dreamWord = _dreamWord
     --cecho("\n"..M2Stats:toStringTemp())
+    M2UI:updateTheStuff()
   end
 
   function MUDKIP_Mud2:clearDreamword()
     M2Stats.dreamWord = ""
     --cecho("\n"..M2Stats:toStringTemp())
+    M2UI:updateTheStuff()
   end
 
 end
