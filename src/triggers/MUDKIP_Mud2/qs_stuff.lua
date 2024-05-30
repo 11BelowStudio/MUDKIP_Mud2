@@ -4,5 +4,5 @@ MUDKIP_Mud2:updateQs(
 	matches.sta,
 	matches.maxSta,
 	matches.mag,
-	matches.pts
+	matches.pts:gsub(",", "")
 )

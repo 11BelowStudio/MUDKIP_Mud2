@@ -46,11 +46,11 @@ if not MUDKIP_Mud2 then
     M2Stats.maxStamina = tonumber(_maxSta)
     M2Stats.effStr = tonumber(_effStr)
     M2Stats.str = tonumber(_str)
-    M2Stats.effDex = tonumber(_effDex)
-    M2Stats.dex = tonumber(_dex)
-    M2Stats.magic = tonumber(_mag)
-    M2Stats.maxMagic = tonumber(_maxMag)
-    M2Stats.pts = tonumber(_pts)
+    M2Stats.effDex = tonumber(_effDex:gsub(",", ""))
+    M2Stats.dex = tonumber(_dex:gsub(",", ""))
+    M2Stats.magic = tonumber(_mag:gsub(",", ""))
+    M2Stats.maxMagic = tonumber(_maxMag:gsub(",", ""))
+    M2Stats.pts = tonumber(_pts:gsub(",", ""))
     M2Stats.blind = (_blind == "Y")
     M2Stats.deaf = (_deaf == "Y")
     M2Stats.crippled = (_crip == "Y")
@@ -73,7 +73,7 @@ if not MUDKIP_Mud2 then
     M2Stats.maxStamina = tonumber(_maxSta)
     M2Stats.effStr = tonumber(_effStr)
     M2Stats.effDex = tonumber(_effDex)
-    M2Stats.pts = tonumber(_pts)
+    M2Stats.pts = tonumber(_pts:gsub(",", ""))
 
     local magic = tonumber(_mag)
 
@@ -112,7 +112,7 @@ if not MUDKIP_Mud2 then
 
   -- updates known points for the persona automagically whenever points get updated 
   function MUDKIP_Mud2:updatePoints(_pts)
-    M2Stats.pts = tonumber(_pts)
+    M2Stats.pts = tonumber(_pts:gsub(",", ""))
     M2UI:updateTheStuff()
     --cecho("\n"..M2Stats:toStringTemp())
   end
