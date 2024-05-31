@@ -39,7 +39,7 @@ jobs:
         uses: antifree/json-to-variables@v1.2.0
         with:
           # The json file.
-          filename: "/mfile"
+          filename: "mfile"
           # The prefix for variables.
           prefix: "mfile"
 
