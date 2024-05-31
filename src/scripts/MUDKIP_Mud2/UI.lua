@@ -158,7 +158,7 @@ function MUDKIP_Mud2.ui:updateStaminaBarOld(_stam, _maxStam)
     stambar:setColor("#668800")
   elseif hpPercent <= 80 then
     stambar:setColor("#448800")
-  elseif hpPercent == 100 then
+  elseif hpPercent >= 100 then
     stambar:setColor("#00d000")
     stamSuffix = ". Good job!"
   else
