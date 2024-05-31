@@ -1,5 +1,21 @@
 [
   {
+    "name": "afflictions",
+    "isActive": "yes",
+    "multiline": "yes",
+    "filter": "yes",
+    "patterns": [
+      {
+        "pattern":"9,0",
+        "type": "color"
+      },
+      {
+        "pattern":"(gone|regained)",
+        "type":"regex"
+      }
+    ]
+  },
+  {
     "name": "dreamword_finder",
     "isActive": "yes",
     "multiline": "yes",

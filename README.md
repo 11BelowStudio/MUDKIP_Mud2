@@ -2,63 +2,76 @@
 
 ## Multi User Dungeon Kool Informational Panels (for playing MUD2 with Mudlet)
 
-**MUDKIP** is a plucky little Mudlet plugin I bodged together,
-to add some kool informational panels that might be of use
-whilst one is playing MUD2.
+**MUDKIP** is a plucky little [Mudlet](https://www.mudlet.org) plugin I bodged together, which adds some Kool Informational Panels that might be of use whilst one is playing *MUD2*.
 
 It adds some gauges at the bottom to show your current stamina
 and magic (assuming you have any magic) at a glance, and adds
 a status bar across the top with the raw stats on them (along
 with afflictions, the dreamword, current points, etc.)
 
-Yes, *MUDKIP* isn't complete. It still relies on you (the 
-player) manually sending a `FES` every so often to update
-some of the stats (albeit it can recognize most point/stamina/
-etc update messages and react accordingly)
+This is a plugin for Mudlet, *not a standalone MUD client!*
+Please ensure you have Mudlet installed and are using Mudlet.
 
+And, again, this is *only intended to be used for MUD2!*
+This is very unlikely to work on any other MUD, so don't try it.
 
+## Installation and Uninstallation
 
+### Installation
 
-This is a template project created by muddler. It's meant to give you the basic skeleton to get started.
-It is not a complete project, nor does it provide an example of every type of trigger scenario or keybinding corner case. It would make it even more difficult to clear out to make way for your own items.
-It **will** properly muddle and create an mpackage, however.
-For more detailed information on describing your triggers, scripts, etc in the json files, please see the [muddler wiki](https://github.com/demonnic/muddler/wiki)
+Open your MUD2 profile in mudlet and enter the following command:
 
-This space is where I would normally put the description of my package and what it does/why I made it. But if you have a README format you already like, feel free to ignore all this.
+`lua installPackage("https://somedomain.org/path/to/my/package/MUDKIP_Mud2.mpackage")`
 
-## Installation
+### Uninstallation
 
-It's a good idea to provide installation instructions. I like to include a command they can copy/paste into the Mudlet commandline. Like
+Open your MUD2 profile in mudlet and enter this command:
 
-`lua uninstallPackage("MUDKIP_Mud2") installPackage("https://somedomain.org/path/to/my/package/MUDKIP_Mud2.mpackage")`
+`lua uninstallPackage("MUDKIP_Mud2")`
 
 ## Usage
 
-Brief introduction to the overall usage. Then break it down to specifics
+The main thing *MUDKIP* does is add the status indicators
+mentioned above. It shows your stats at a glance, current
+status afflictions, current weather, time until the next reset,
+and the most recent dreamword you recieved.
+
+The only automation it currently offers is sending a `fes`
+every so often whilst in-game (to obtain the current status of
+your persona), and does this via sending one along with your
+other commands.
+
+**MUDKIP** unfortunately does *not* offer those bells and
+whistles like speedwalking, fancy maps, re-fighting, etc.
 
 ### Aliases
 
-* `alias1 <param1>`
-  * description of what the alias does, and what param1 is if it exists
-    * example usage1
-    * optional example usage2, etc
-* `alias 2`
-  * and so on, and so forth
+* `(.+)` *(semi_auto_fes)*
+  * This alias is currently used as a really hacky way of sneaking in the semi-automatic `fes` command every so often.
+  * Every 20 seconds, assuming you're actually in the game
+  (have entered the tearoom etc), *MUDKIP* will 'queue' a `fes`
+  command, which, via this alias, will be appended onto the
+  command you send to the server (otherwise your command is
+  sent as-is, completely untouched).
 
 ### API
 
-* `functionName(param1, param2)
-  * Then, do the same thing for any Lua API which you want them to be able to use.
-  * This part can be skipped if you have separate API documentation, but keep in mind the README.md file is accessible from the package manage in Mudlet, so this allows you to provide documentation within Mudlet, to a degree.
+// TODO
+
+* Everything's contained within the global `MUDKIP_Mud2` table.
+* The stats etc with the current state of your persona are
+  in the `MUDKIP_Mud2.stats` table.
 
 ## Final thoughts, how to contribute, thanks, things like that
 
-I like to put anything which doesn't fit with the above stuff here, at the end. It keeps the documentation like stuff at the top.
+*MUDKIP* is still a bit scuffed, and some of the implementation
+details could use a bit of cleaning up. If you do want to help
+out, feel free to open a PR on the `develop` branch.
 
+This package was built using [muddler](https://github.com/demonnic/muddler), in case you were wondering.
+Consider taking a look at the documentation of muddler
+if you wish to contribute to the development of *MUDKIP*.
 
-## notes
+### TODO
 
-It looks like appending a `￼␛-[fes￼␛-]` to the start of any
-command a player attempts to send **DURING GAMEPLAY** would work
-to have some sort of auto-fes thing with minimal intrusion on
-player experience? no idea how to go about doing that though.
+* add screenshots to this readme
