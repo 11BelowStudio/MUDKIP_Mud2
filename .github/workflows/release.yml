@@ -41,6 +41,7 @@ jobs:
           # Destination path. Supports basic tilde expansion.
           # Optional. Default is $GITHUB_WORKSPACE
           path: build/tmp/
+          merge-multiple: true
       
           # A glob pattern to the artifacts that should be downloaded.
           # Ignored if name is specified.
