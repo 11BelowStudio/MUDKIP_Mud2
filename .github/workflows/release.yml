@@ -31,6 +31,22 @@ jobs:
           name: MUDKIP_Mud2
           path: build/tmp/
 
+      - uses: actions/download-artifact@v4
+        with:
+          # Name of the artifact to download.
+          # If unspecified, all artifacts for the run are downloaded.
+          # Optional.
+          # name: 
+      
+          # Destination path. Supports basic tilde expansion.
+          # Optional. Default is $GITHUB_WORKSPACE
+          path: build/tmp/
+      
+          # A glob pattern to the artifacts that should be downloaded.
+          # Ignored if name is specified.
+          # Optional.
+          # pattern:
+          
       - name: JSON to variables
         # see https://github.com/antifree/json-to-variables
         # You may pin to the exact commit or the version.
