@@ -26,27 +26,16 @@ jobs:
           #workingDir: # optional, default is ${{ github.workspace }}
 
       - name: Upload Artifact
+        # https://github.com/marketplace/actions/upload-a-build-artifact#using-outputs
         uses: actions/upload-artifact@v4.3.3
         with:
           name: MUDKIP_Mud2
           path: build/tmp/
 
       - uses: actions/download-artifact@v4
+        # https://github.com/marketplace/actions/download-a-build-artifact
         with:
-          # Name of the artifact to download.
-          # If unspecified, all artifacts for the run are downloaded.
-          # Optional.
-          # name: 
-      
-          # Destination path. Supports basic tilde expansion.
-          # Optional. Default is $GITHUB_WORKSPACE
-          path: build/tmp/
           merge-multiple: true
-      
-          # A glob pattern to the artifacts that should be downloaded.
-          # Ignored if name is specified.
-          # Optional.
-          # pattern:
           
       - name: JSON to variables
         # see https://github.com/antifree/json-to-variables
@@ -62,7 +51,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         # see https://github.com/marketplace/actions/create-release
         with:
-          artifacts: "build/tmp/MUDKIP_Mud2.*"
+          artifacts: "MUDKIP_Mud2.*"
           allowUpdates: true
           bodyFile: "./README.md"
           tag: ${{ env.mfile_version }}
