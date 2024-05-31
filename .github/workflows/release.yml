@@ -1,0 +1,94 @@
+name: Build project using muddler and upload artifact
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3.3.0
+      
+      - name: Build With Muddler
+        # You may pin to the exact commit or the version.
+        # uses: demonnic/build-with-muddler@a9355b3c4f93553287e0f2d4087508b9f6164225
+        uses: demonnic/build-with-muddler@v1.4
+        with:
+          # Version of muddler to use
+          muddlerVersion: LATEST # optional, default is LATEST
+          # What directory to run muddler in.
+          #workingDir: # optional, default is ${{ github.workspace }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          name: MUDKIP_Mud2
+          path: build/tmp/
+  release:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: JSON to variables
+        # see https://github.com/antifree/json-to-variables
+        # You may pin to the exact commit or the version.
+        # uses: antifree/json-to-variables@cc8c6394031e145c90f7f9ec909d83df92431fb8
+        uses: antifree/json-to-variables@v1.2.0
+        with:
+          # The json file.
+          filename: "/mfile"
+          # The prefix for variables.
+          prefix: "mfile"
+
+      - name: Delete tag
+        run: gh release delete ${{ env.mfile_version }} --cleanup-tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Delete tag
+        run: gh release delete latest --cleanup-tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create New Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.mfile_version }}
+          release_name: Release ${{ env.mfile_version }}
+          draft: false
+          prerelease: false
+          body: |
+            Archive of MUDKIP_Mud2 version ${{ env.mfile_version }}
+      - name: GitHub Upload Release Artifacts
+        # You may pin to the exact commit or the version.
+        # uses: Roang-zero1/github-upload-release-artifacts-action@87271b3f8dca9feb9e9d44381fddd2db7f09d6e1
+        uses: Roang-zero1/github-upload-release-artifacts-action@v3.0.0
+        with:
+          # Allows to pass an already created tag, forces update_existing to true.
+          created_tag: ${{ env.mfile_version }}
+
+      - name: Create New Release
+        id: create_release_latest
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: latest
+          release_name: Latest Release
+          draft: false
+          prerelease: false
+          body: |
+            This should be the latest version of MUDKIP_Mud2 (${{ env.mfile_version }})
+      - name: GitHub Upload Release Artifacts
+        # You may pin to the exact commit or the version.
+        # uses: Roang-zero1/github-upload-release-artifacts-action@87271b3f8dca9feb9e9d44381fddd2db7f09d6e1
+        uses: Roang-zero1/github-upload-release-artifacts-action@v3.0.0
+        with:
+          # Allows to pass an already created tag, forces update_existing to true.
+          created_tag: latest
