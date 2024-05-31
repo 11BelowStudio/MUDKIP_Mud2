@@ -47,5 +47,5 @@ jobs:
         with:
           artifacts: "build/tmp/MUDKIP_Mud2.*"
           allowUpdates: true
-          bodyFile: "./readme.md"
+          bodyFile: "./README.md"
           tag: ${{ env.mfile_version }}
