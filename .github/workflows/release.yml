@@ -25,17 +25,17 @@ jobs:
           # What directory to run muddler in.
           #workingDir: # optional, default is ${{ github.workspace }}
 
-      - name: Upload Artifact
-        # https://github.com/marketplace/actions/upload-a-build-artifact#using-outputs
-        uses: actions/upload-artifact@v4.3.3
-        with:
-          name: MUDKIP_Mud2
-          path: build/tmp/
+      #- name: Upload Artifact
+      #  # https://github.com/marketplace/actions/upload-a-build-artifact#using-outputs
+      #  uses: actions/upload-artifact@v4.3.3
+      #  with:
+      #    name: MUDKIP_Mud2
+      #    path: build/tmp/
 
-      - uses: actions/download-artifact@v4
-        # https://github.com/marketplace/actions/download-a-build-artifact
-        with:
-          merge-multiple: true
+      #- uses: actions/download-artifact@v4
+      #  # https://github.com/marketplace/actions/download-a-build-artifact
+      #  with:
+      #    merge-multiple: true
           
       - name: JSON to variables
         # see https://github.com/antifree/json-to-variables
@@ -51,7 +51,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         # see https://github.com/marketplace/actions/create-release
         with:
-          artifacts: "MUDKIP_Mud2.*"
+          artifacts: "build/tmp/"
           allowUpdates: true
           bodyFile: "./README.md"
           tag: ${{ env.mfile_version }}
