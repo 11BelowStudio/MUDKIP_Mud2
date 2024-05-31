@@ -1,0 +1,30 @@
+name: Build project using muddler and upload artifact
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3.3.0
+
+      - name: Build With Muddler
+        # You may pin to the exact commit or the version.
+        # uses: demonnic/build-with-muddler@a9355b3c4f93553287e0f2d4087508b9f6164225
+        uses: demonnic/build-with-muddler@v1.4
+        with:
+          # Version of muddler to use
+          muddlerVersion: LATEST # optional, default is LATEST
+          # What directory to run muddler in.
+          #workingDir: # optional, default is ${{ github.workspace }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          name: MUDKIP_Mud2
+          path: build/tmp/
