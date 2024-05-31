@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v3.3.0
@@ -40,52 +42,10 @@ jobs:
           # The prefix for variables.
           prefix: "mfile"
 
-      - name: Delete tag
-        run: gh release delete ${{ env.mfile_version }} --cleanup-tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Delete tag
-        run: gh release delete latest --cleanup-tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create New Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ncipollo/release-action@v1
+        # see https://github.com/marketplace/actions/create-release
         with:
-          tag_name: ${{ env.mfile_version }}
-          release_name: Release ${{ env.mfile_version }}
-          draft: false
-          prerelease: false
-          body: |
-            Archive of MUDKIP_Mud2 version ${{ env.mfile_version }}
-      - name: GitHub Upload Release Artifacts
-        # You may pin to the exact commit or the version.
-        # uses: Roang-zero1/github-upload-release-artifacts-action@87271b3f8dca9feb9e9d44381fddd2db7f09d6e1
-        uses: Roang-zero1/github-upload-release-artifacts-action@v3.0.0
-        with:
-          # Allows to pass an already created tag, forces update_existing to true.
-          created_tag: ${{ env.mfile_version }}
-
-      - name: Create New Release
-        id: create_release_latest
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: latest
-          release_name: Latest Release
-          draft: false
-          prerelease: false
-          body: |
-            This should be the latest version of MUDKIP_Mud2 (${{ env.mfile_version }})
-      - name: GitHub Upload Release Artifacts
-        # You may pin to the exact commit or the version.
-        # uses: Roang-zero1/github-upload-release-artifacts-action@87271b3f8dca9feb9e9d44381fddd2db7f09d6e1
-        uses: Roang-zero1/github-upload-release-artifacts-action@v3.0.0
-        with:
-          # Allows to pass an already created tag, forces update_existing to true.
-          created_tag: latest
+          artifacts: "build/tmp/MUDKIP_Mud2.*"
+          allowUpdates: true
+          bodyFile: "./readme.md"
+          tag: ${{ env.mfile_version }}
