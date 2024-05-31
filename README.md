@@ -2,7 +2,9 @@
 
 ## Multi User Dungeon Kool Informational Panels (for playing MUD2 with Mudlet)
 
-**MUDKIP** is a plucky little [Mudlet](https://www.mudlet.org) plugin I bodged together, which adds some Kool Informational Panels that might be of use whilst one is playing *MUD2*.
+**MUDKIP** is a plucky little [Mudlet](https://www.mudlet.org) plugin
+I bodged together, which adds some Kool Informational Panels
+that might be of use whilst one is playing *MUD2*.
 
 It adds some gauges at the bottom to show your current stamina
 and magic (assuming you have any magic) at a glance, and adds
@@ -21,7 +23,7 @@ This is very unlikely to work on any other MUD, so don't try it.
 
 Open your MUD2 profile in mudlet and enter the following command:
 
-`lua installPackage("https://somedomain.org/path/to/my/package/MUDKIP_Mud2.mpackage")`
+`lua installPackage("https://github.com/11BelowStudio/MUDKIP_Mud2/releases/latest/download/MUDKIP_Mud2.mpackage")`
 
 ### Uninstallation
 
@@ -47,7 +49,8 @@ whistles like speedwalking, fancy maps, re-fighting, etc.
 ### Aliases
 
 * `(.+)` *(semi_auto_fes)*
-  * This alias is currently used as a really hacky way of sneaking in the semi-automatic `fes` command every so often.
+  * This alias is currently used as a really hacky way of
+  sneaking in the semi-automatic `fes` command every so often.
   * Every 20 seconds, assuming you're actually in the game
   (have entered the tearoom etc), *MUDKIP* will 'queue' a `fes`
   command, which, via this alias, will be appended onto the
@@ -68,7 +71,8 @@ whistles like speedwalking, fancy maps, re-fighting, etc.
 details could use a bit of cleaning up. If you do want to help
 out, feel free to open a PR on the `develop` branch.
 
-This package was built using [muddler](https://github.com/demonnic/muddler), in case you were wondering.
+This package was built using [muddler](https://github.com/demonnic/muddler),
+in case you were wondering.
 Consider taking a look at the documentation of muddler
 if you wish to contribute to the development of *MUDKIP*.
 
