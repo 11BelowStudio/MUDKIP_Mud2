@@ -390,8 +390,12 @@ function MUDKIP_Mud2.ui:updateTheStuff()
 
   -- and now the other label.
 
+  if _dreamWord ~= "" then
+    _dreamWord = "&nbsp;".._dreamWord.."&nbsp;"
+  end
+
   local dreamWordText = string.format(
-    '<b style="color:#000000;background-color:#008080;">&nbsp;%s&nbsp;</b>&nbsp;',
+    '<b style="color:#000000;background-color:#008080;">%s</b>&nbsp;',
     _dreamWord
   )
 
