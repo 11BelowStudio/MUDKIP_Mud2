@@ -17,6 +17,8 @@ Please ensure you have Mudlet installed and are using Mudlet.
 And, again, this is *only intended to be used for MUD2!*
 This is very unlikely to work on any other MUD, so don't try it.
 
+![a screenshot of MUDKIP being used in mudlet](/docs/readme.png)
+
 ## Installation and Uninstallation
 
 ### Installation
@@ -30,6 +32,8 @@ Open your MUD2 profile in mudlet and enter the following command:
 Open your MUD2 profile in mudlet and enter this command:
 
 `lua uninstallPackage("MUDKIP_Mud2")`
+
+(or just use mudlet's package manager menu thing to uninstall it)
 
 ## Usage
 
