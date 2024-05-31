@@ -25,7 +25,7 @@ MUDKIP_Mud2:updateFes(
 	matches.dex,
 	matches.mag,
 	matches.maxMag,
-	matches.pts,
+	matches.pts:gsub(",", ""),
 	matches.blind,
 	matches.deaf,
 	matches.crip,
