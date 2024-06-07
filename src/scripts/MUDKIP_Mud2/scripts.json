@@ -10,9 +10,8 @@
     "eventHandlerList": []
   },
   {
-    "name": "MUDKIP_Mud2_example_script",
-    "eventHandlerList": [
-      "sysInstall"
-    ]
+    "name":"updates",
+    "isActive":"yes",
+    "eventHandlerList": []
   }
 ]

@@ -42,8 +42,12 @@ if not MUDKIP_Mud2 then
     end
     local endprefix = "</b></i></u></o></s><reset> - "
 
-    cecho(prefix .. type .. endprefix .. _message)
+    cecho("main",prefix .. type .. endprefix .. _message)
   end
+
+  local M2Updates = {}
+
+  MUDKIP_Mud2.updates = M2Updates
 
 
   local M2UI = {}
