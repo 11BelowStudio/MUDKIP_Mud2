@@ -17,6 +17,8 @@ Please ensure you have Mudlet installed and are using Mudlet.
 And, again, this is *only intended to be used for MUD2!*
 This is very unlikely to work on any other MUD, so don't try it.
 
+also yes, we have auto-updates now (very nice)
+
 ![a screenshot of MUDKIP being used in mudlet](/docs/readme.png)
 
 ## Installation and Uninstallation
@@ -40,7 +42,7 @@ Open your MUD2 profile in mudlet and enter this command:
 The main thing *MUDKIP* does is add the status indicators
 mentioned above. It shows your stats at a glance, current
 status afflictions, current weather, time until the next reset,
-and the most recent dreamword you recieved.
+and the most recent dreamword you received.
 
 The only automation it currently offers is sending a `fes`
 every so often whilst in-game (to obtain the current status of
@@ -67,6 +69,7 @@ whistles like speedwalking, fancy maps, re-fighting, etc.
 * The stats etc with the current state of your persona are
   in the `MUDKIP_Mud2.stats` table.
 * UI stuff is held in `MUDKIP_Mud2.ui`
+* Auto-update stuff is held in `MUDKIP_Mud2.updates`
 
 ## Final thoughts, how to contribute, thanks, things like that
 
@@ -81,14 +84,12 @@ if you wish to contribute to the development of *MUDKIP*.
 
 ## CHANGELOG
 
-* **1.1.0** (7/6/2024)
-  * Replaced the semi-automatic fes with an auto fes
-  * Added `dword` alias for automatically saying dreamword
-  * Added version indicator
-  * Some backend changes
+* **1.1.1** (7/6/2024)
+  * Added automatic updates so you (hopefully) don't need to manually update MUDKIP any more :)
+
 
 See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/CHANGELOG.md) for the full changelog.
 
 ## TODO
 
-* automatic updates via github.
+* see what people want I guess

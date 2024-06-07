@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.1.1
+
+*7/6/2024*
+
+* Added automatic updates so you (hopefully) don't need to manually update MUDKIP any more :)
+
 ## 1.1.0
 
 *7/6/2024*
