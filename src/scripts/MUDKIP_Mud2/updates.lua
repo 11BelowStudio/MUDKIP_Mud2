@@ -321,6 +321,8 @@ function M2Updates:sysInstallEvent(_, name)
 end
 ]]
 
+M2Updates:update_scripts()
+
 --registerAnonymousEventHandler("sysLoadEvent", "MUDKIP_Mud2.update_scripts()")
 
 registerAnonymousEventHandler("sysDownloadDone", "MUDKIP_Mud2.updates:eventHandler")
