@@ -8,7 +8,7 @@ if not MUDKIP_Mud2 then
 
   _G.MUDKIP_Mud2 = {}
 
-  MUDKIP_Mud2._VERSION = "1.1.0"
+  MUDKIP_Mud2._VERSION = getPackageInfo("MUDKIP_Mud2","version")
 
   --[[--
   simply returns the version of MUDKIP_Mud2
@@ -233,5 +233,5 @@ if not MUDKIP_Mud2 then
   end
 
 
-  MUDKIP_Mud2:mcecho("MUDKIP_Mud2 v" .. getPackageInfo("MUDKIP_Mud2","version") .. " initialized!\n", "info")
+  MUDKIP_Mud2:mcecho("MUDKIP_Mud2 v" .. MUDKIP_Mud2:getVersion() .. " initialized!\n", "info")
 end

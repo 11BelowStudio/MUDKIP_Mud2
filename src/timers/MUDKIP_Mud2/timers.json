@@ -2,7 +2,7 @@
   {
     "name": "MUDKIP_Mud2_anti_idle",
     "minutes": "4",
-    "isActive": "no"
+    "isActive": "false"
   },
   {
     "name": "MUDKIP_Mud2_autofes",
