@@ -51,7 +51,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         # see https://github.com/marketplace/actions/create-release
         with:
-          artifacts: "build/MUDKIP_Mud2.*"
+          artifacts: "build/MUDKIP_Mud2.*,release.json"
           allowUpdates: true
           bodyFile: "./README.md"
           tag: ${{ env.mfile_version }}
