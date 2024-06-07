@@ -1,4 +1,7 @@
 --if getCmdLine() == "" then
-send("￼␛-[fes￼␛-]")
+
+if MUDKIP_Mud2:isInGame() then
+  send("￼␛-[fes￼␛-]")
+end
 --cecho(f("just did fes"))
 --end

@@ -44,22 +44,20 @@ and the most recent dreamword you recieved.
 
 The only automation it currently offers is sending a `fes`
 every so often whilst in-game (to obtain the current status of
-your persona), and does this via sending one along with your
-other commands.
+your persona), and an alias for saying the dreamword (if known)
 
 **MUDKIP** unfortunately does *not* offer those bells and
 whistles like speedwalking, fancy maps, re-fighting, etc.
 
 ### Aliases
 
-* `(.+)` *(semi_auto_fes)*
-  * This alias is currently used as a really hacky way of
-  sneaking in the semi-automatic `fes` command every so often.
-  * Every 20 seconds, assuming you're actually in the game
-  (have entered the tearoom etc), *MUDKIP* will 'queue' a `fes`
-  command, which, via this alias, will be appended onto the
-  command you send to the server (otherwise your command is
-  sent as-is, completely untouched).
+* `dword`
+  * **automatic dreamword**
+    * If the dreamword is known, this will send a `say <dreamword>`
+    command to the game.
+    * If the dreamword is not known, MUDKIP will leave a message
+    telling you that it doesn't know what the dreamword is.
+  * `dwo` and `dwor` are also aliases for this.
 
 ### API
 
@@ -68,6 +66,7 @@ whistles like speedwalking, fancy maps, re-fighting, etc.
 * Everything's contained within the global `MUDKIP_Mud2` table.
 * The stats etc with the current state of your persona are
   in the `MUDKIP_Mud2.stats` table.
+* UI stuff is held in `MUDKIP_Mud2.ui`
 
 ## Final thoughts, how to contribute, thanks, things like that
 
@@ -80,6 +79,16 @@ in case you were wondering.
 Consider taking a look at the documentation of muddler
 if you wish to contribute to the development of *MUDKIP*.
 
-### TODO
+## CHANGELOG
 
-* add screenshots to this readme
+* **1.1.0** (7/6/2024)
+  * Replaced the semi-automatic fes with an auto fes
+  * Added `dword` alias for automatically saying dreamword
+  * Added version indicator
+  * Some backend changes
+
+See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/CHANGELOG.md) for the full changelog.
+
+## TODO
+
+* automatic updates via github.

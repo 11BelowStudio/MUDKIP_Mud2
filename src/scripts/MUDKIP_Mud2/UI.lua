@@ -7,7 +7,9 @@ if getBorderTop() == 0 then
   setBorderTop(select(2, calcFontSize(getFontSize())) * 1.1)
 end
 
-MUDKIP_Mud2.bottompanel =
+local M2UI = MUDKIP_Mud2.ui
+
+M2UI.bottompanel =
   Geyser.Container:new(
     {
       name = "bottompanel",
@@ -16,7 +18,7 @@ MUDKIP_Mud2.bottompanel =
     }
   )
 
-MUDKIP_Mud2.toppanel =
+M2UI.toppanel =
   Geyser.Container:new(
     {
       name = "toppanel",
@@ -25,31 +27,31 @@ MUDKIP_Mud2.toppanel =
   }
 )
 
-MUDKIP_Mud2.stambar =
+M2UI.stambar =
   Geyser.Gauge:new(
     {
       name = "stambar",
       x = "1.25%", y = 0,
       width = "47.5%", height = "100%"
     },
-    MUDKIP_Mud2.bottompanel
+    M2UI.bottompanel
   )
 
-MUDKIP_Mud2.magicbar =
+M2UI.magicbar =
   Geyser.Gauge:new(
     {
       name = "magicbar",
       x = "51.25%", y = 0,
       width = "47.5%", height = "100%"
     },
-    MUDKIP_Mud2.bottompanel
+    M2UI.bottompanel
   )
 
-MUDKIP_Mud2.stambar:setColor("#00cc00")
-MUDKIP_Mud2.stambar:setText("Stamina: ?/? [Please fes or qs]")
-MUDKIP_Mud2.stambar.text:setToolTip("Pro tip: keep this above 0 to not die")
+M2UI.stambar:setColor("#00cc00")
+M2UI.stambar:setText("Stamina: ?/? [Please fes or qs]")
+M2UI.stambar.text:setToolTip("Pro tip: keep this above 0 to not die")
 
-function MUDKIP_Mud2.ui:getPercent(_stat,_maxStat)
+function M2UI:getPercent(_stat,_maxStat)
   return math.floor((_stat / _maxStat * 100) + 0.5)
 end
 
@@ -58,8 +60,8 @@ end
     and returns the stat thing as a percent,
     and an appropriate hex colour for it (green-red gradient)
 ]]--
-function MUDKIP_Mud2.ui:getPercentAndColor(_stat,_maxStat)
-  local percent = MUDKIP_Mud2.ui:getPercent(_stat,_maxStat)
+function M2UI:getPercentAndColor(_stat,_maxStat)
+  local percent = M2UI:getPercent(_stat,_maxStat)
   local theColor = "#ff0000"
 
   if percent <= 5 then
@@ -96,9 +98,9 @@ give this function the known stam, maxStam,
   and calculated stam percent and colour from getPercentAndColor,
   and this will go and update the stamina bar appropriately.
 ]]--
-function MUDKIP_Mud2.ui:updateStaminaBar(_stam,_maxStam,_percent,_color)
+function M2UI:updateStaminaBar(_stam,_maxStam,_percent,_color)
 
-  local stambar = MUDKIP_Mud2.stambar
+  local stambar = M2UI.stambar
 
   local stamSuffix = ""
   if _percent <= 5 then
@@ -111,6 +113,8 @@ function MUDKIP_Mud2.ui:updateStaminaBar(_stam,_maxStam,_percent,_color)
     stamSuffix = ". DANGER ZONE."
   elseif _percent <= 30 then
     stamSuffix = ". Not good."
+  elseif _percent >= 100 then
+    stamSuffix = ". Good job!"
   end
 
   stambar:setValue(_percent)
@@ -124,12 +128,12 @@ function MUDKIP_Mud2.ui:updateStaminaBar(_stam,_maxStam,_percent,_color)
 end
 
 
-function MUDKIP_Mud2.ui:updateStaminaBarOld(_stam, _maxStam)
+function M2UI:updateStaminaBarOld(_stam, _maxStam)
   -- this gets the percent as an integer, rounded to the nearest whole percent
   local hpPercent = math.floor((_stam / _maxStam * 100) + 0.5)
 
   local stamSuffix = ""
-  local stambar = MUDKIP_Mud2.stambar
+  local stambar = M2UI.stambar
 
   if hpPercent <= 0 then
     stambar:setColor("#ff0000")
@@ -174,17 +178,17 @@ function MUDKIP_Mud2.ui:updateStaminaBarOld(_stam, _maxStam)
   end
 end
 
-MUDKIP_Mud2.magicbar:setColor("#800080")
-MUDKIP_Mud2.magicbar:setText("Magic: ?/? [Please fes or qs]")
-MUDKIP_Mud2.magicbar.text:setToolTip("Please fes so this bar will work thanks")
+M2UI.magicbar:setColor("#800080")
+M2UI.magicbar:setText("Magic: ?/? [Please fes or qs]")
+M2UI.magicbar.text:setToolTip("Please fes so this bar will work thanks")
 
 
-function MUDKIP_Mud2.ui:updateMagicBar(_mag, _maxMag)
+function M2UI:updateMagicBar(_mag, _maxMag)
   -- this gets the percent as an integer, rounded to the nearest whole percent
   local magicPercent = math.floor((_mag / _maxMag * 100) + 0.5)
 
   local magSuffix = ""
-  local magicbar = MUDKIP_Mud2.magicbar
+  local magicbar = M2UI.magicbar
 
   if magicPercent <= 0 then
     magicbar:setColor("#800080")
@@ -224,17 +228,17 @@ function MUDKIP_Mud2.ui:updateMagicBar(_mag, _maxMag)
   end
 end
 
-function MUDKIP_Mud2.ui:updateStaminaTemp()
-  MUDKIP_Mud2.ui:updateStaminaBarOld(MUDKIP_Mud2.stats.stamina, MUDKIP_Mud2.stats.maxStamina)
+function M2UI:updateStaminaTemp()
+  M2UI:updateStaminaBarOld(MUDKIP_Mud2.stats.stamina, MUDKIP_Mud2.stats.maxStamina)
 end
 
-function MUDKIP_Mud2.ui:updateBars()
-  MUDKIP_Mud2.ui:updateStaminaBarOld(MUDKIP_Mud2.stats.stamina, MUDKIP_Mud2.stats.maxStamina)
-  MUDKIP_Mud2.ui:updateMagicBar(MUDKIP_Mud2.stats.magic, MUDKIP_Mud2.stats.maxMagic)
+function M2UI:updateBars()
+  M2UI:updateStaminaBarOld(MUDKIP_Mud2.stats.stamina, MUDKIP_Mud2.stats.maxStamina)
+  M2UI:updateMagicBar(MUDKIP_Mud2.stats.magic, MUDKIP_Mud2.stats.maxMagic)
 end
 
 --"MUDKIP for MUD2 status bar!"
-MUDKIP_Mud2.leftstats =
+M2UI.leftstats =
   Geyser.Label:new(
     {
       name = "leftstats",
@@ -243,14 +247,15 @@ MUDKIP_Mud2.leftstats =
       bgColor = "black",
       message = " Sta:000/000&emsp;Dex:000/000 Str:000/000&emsp;Mag:000/000&emsp;Pts:000,000",
     },
-    MUDKIP_Mud2.toppanel
+    M2UI.toppanel
   )
-MUDKIP_Mud2.leftstats:setStyleSheet([[
+
+M2UI.leftstats:setStyleSheet([[
   qproperty-alignment: 'AlignLeft | AlignVCenter';
   qproperty-font: ]].. getFontSize() .. [[pt ]]..getFont()..[[;
 ]])
 
-MUDKIP_Mud2.rightstats =
+M2UI.rightstats =
   Geyser.Label:new(
     {
       name = "rightstats",
@@ -259,10 +264,10 @@ MUDKIP_Mud2.rightstats =
       bgColor = "black",
       message = "placeholder placeholder"
     },
-    MUDKIP_Mud2.toppanel
+    M2UI.toppanel
   )
 
-MUDKIP_Mud2.rightstats:setStyleSheet([[
+M2UI.rightstats:setStyleSheet([[
   qproperty-alignment: 'AlignRight | AlignVCenter';
   qproperty-font: ]].. getFontSize() .. [[pt ]]..getFont()..[[;
 ]])
@@ -308,9 +313,10 @@ local function statusText(_blind,_deaf,_crippled,_dumb)
 
   return output
 end
-  
 
-function MUDKIP_Mud2.ui:updateTheStuff()
+
+
+function M2UI:updateTheStuff()
   -- getting stuff as local variables so there's less hassle writing it out all over again
   local _stam = MUDKIP_Mud2.stats.stamina
   local _maxStam = MUDKIP_Mud2.stats.maxStamina
@@ -327,22 +333,22 @@ function MUDKIP_Mud2.ui:updateTheStuff()
   local _isDumb = MUDKIP_Mud2.stats.dumb
   local _dreamWord = MUDKIP_Mud2.stats.dreamWord
   local _mins = MUDKIP_Mud2.stats.resetMins
-  local _weather = MUDKIP_Mud2.stats.weather
+  local _weather = MUDKIP_Mud2:getWeatherString()
 
-  local leftStats = MUDKIP_Mud2.leftstats
-  local rightStats = MUDKIP_Mud2.rightstats
+  local leftStats = M2UI.leftstats
+  local rightStats = M2UI.rightstats
 
   -- calc additional local variables re stamina
-  local stamPercent, stamColor = MUDKIP_Mud2.ui:getPercentAndColor(_stam,_maxStam)
+  local stamPercent, stamColor = M2UI:getPercentAndColor(_stam,_maxStam)
 
   -- use those local variables to update stambar
-  MUDKIP_Mud2.ui:updateStaminaBar(_stam,_maxStam,stamPercent,stamColor)
+  M2UI:updateStaminaBar(_stam,_maxStam,stamPercent,stamColor)
 
   -- and then we update the magic bar
-  MUDKIP_Mud2.ui:updateMagicBar(_mag,_maxMag)
+  M2UI:updateMagicBar(_mag,_maxMag)
 
 
-  -- and now the complicated bit - putting together the status info string :(
+  -- and now the complicated bit - putting together the status info strings :(
 
   local stamInfo = string.format(
     '&nbsp;Sta:<b style="color:%s;">%3d</b>/<span style="color:#00d000">%3d</span>',
@@ -352,7 +358,7 @@ function MUDKIP_Mud2.ui:updateTheStuff()
   local magicInfo = ""
   if _mag > 0 then
     -- only bother making the magic text if there is magic
-    local _, magicColor = MUDKIP_Mud2.ui:getPercentAndColor(_mag,_maxMag)
+    local _, magicColor = M2UI:getPercentAndColor(_mag,_maxMag)
 
     magicInfo = string.format(
       '&nbsp;Mag:<b style="color:%s;">%3d</b>/<span style="color:#00d000">%3d</span>',
@@ -360,14 +366,14 @@ function MUDKIP_Mud2.ui:updateTheStuff()
     )
   end
 
-  local _, dexColor = MUDKIP_Mud2.ui:getPercentAndColor(_effDex, _dex)
+  local _, dexColor = M2UI:getPercentAndColor(_effDex, _dex)
 
   local dexInfo = string.format(
     '&nbsp;Dex:<b style="color:%s;">%3d</b>/<span style="color:#00d000">%3d</span>',
     dexColor, _effDex, _dex
   )
 
-  local _, strColor = MUDKIP_Mud2.ui:getPercentAndColor(_effStr, _str)
+  local _, strColor = M2UI:getPercentAndColor(_effStr, _str)
 
   local strInfo = string.format(
     '&nbsp;Str:<b style="color:%s;">%3d</b>/<span style="color:#00d000">%3d</span>',
@@ -375,15 +381,16 @@ function MUDKIP_Mud2.ui:updateTheStuff()
   )
 
   local ptsString = string.format(
-    '&nbsp;&nbsp;&nbsp;Pts:<b>%s</b>',
+    '&nbsp;&nbsp;&nbsp;Pts:<b>%-7s</b>',
     numWithCommas(_pts)
   )
 
   local leftLabelText = string.format(
     [[<left><p style="color:#008080;">
     %s%s %s %s %s %s
-    </p></left>]],
-    stamInfo, magicInfo, dexInfo, strInfo, ptsString, statusText(_isBlind,_isDeaf,_isCrippled,_isDumb)
+    [MUDKIP v%s]</p></left>]],
+    stamInfo, magicInfo, dexInfo, strInfo, ptsString, statusText(_isBlind,_isDeaf,_isCrippled,_isDumb),
+    MUDKIP_Mud2:getVersion()
   )
 
   leftStats:echo(leftLabelText)
@@ -401,7 +408,7 @@ function MUDKIP_Mud2.ui:updateTheStuff()
 
   local weatherText = string.format(
     'Weather:<b style="color:#008000;">%s</b>&nbsp;',
-    MUDKIP_Mud2:getWeatherString()
+    _weather
   )
 
   local timeLeftText = string.format(
@@ -420,7 +427,7 @@ function MUDKIP_Mud2.ui:updateTheStuff()
 
 end
 
-
+M2UI:updateTheStuff()
 
 registerAnonymousEventHandler("MUDKIP_Mud2 on prompt", "MUDKIP_Mud2.ui:updateTheStuff")
 -- TODO: make labels in top panel for those stats

@@ -1,4 +1,6 @@
 --[[
+  OBSOLETE AS OF MUDKIP_Mud2 1.1.0!!!
+
   checks if MUDKIP thinks the player is in game.
   If so, it checks (and resets) whether it should semi-auto fes.
 
@@ -11,6 +13,8 @@
 
   There may be unforeseen consequences for this approach.
   But it *should* work. Hopefully.
+
+  UPDATE FOR 1.1.0: feel free to completely ignore this alias!
 ]]--
 
 if MUDKIP_Mud2:isInGame() and MUDKIP_Mud2:checkResetSemiAutoFes() then

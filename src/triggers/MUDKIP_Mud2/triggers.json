@@ -79,12 +79,8 @@
     "multiline": "yes",
     "patterns": [
       {
-        "pattern":"4,0",
-        "type": "color"
-      },
-      {
-        "pattern":"*",
-        "type":"exactMatch"
+        "pattern":"^\\*(\\s*)$",
+        "type": "regex"
       }
     ]
   },

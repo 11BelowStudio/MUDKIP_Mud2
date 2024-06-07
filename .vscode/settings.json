@@ -1,4 +1,7 @@
 {
     "diffEditor.codeLens": true,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "markdownlint.config": {
+        "MD036": false
+    }
 }
