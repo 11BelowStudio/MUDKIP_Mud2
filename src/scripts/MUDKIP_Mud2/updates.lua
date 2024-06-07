@@ -242,6 +242,8 @@ local function check_versions()
 	-- close the files (we don't need them any more)
 	fileClose(version_file)
 	fileClose(dl_file)
+
+	os.remove(dl_path)
   
   if compare_versions(curr_version, dl_version) then
 		if MUDKIP_Mud2 then
@@ -323,7 +325,7 @@ end
 
 M2Updates:update_scripts()
 
---registerAnonymousEventHandler("sysLoadEvent", "MUDKIP_Mud2.update_scripts()")
+--registerAnonymousEventHandler("sysLoadEvent", "MUDKIP_Mud2.updates:update_scripts()")
 
 registerAnonymousEventHandler("sysDownloadDone", "MUDKIP_Mud2.updates:eventHandler")
 registerAnonymousEventHandler("sysDownloadError", "MUDKIP_Mud2.updates:eventHandler")
