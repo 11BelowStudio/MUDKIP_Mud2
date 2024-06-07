@@ -7,11 +7,11 @@
   {
     "name": "MUDKIP_Mud2_autofes",
     "seconds": "20",
-    "isActive": "no"
+    "isActive": "true"
   },
   {
     "name": "semi_auto_fes",
     "seconds": "20",
-    "isActive": "true"
+    "isActive": "false"
   }
 ]

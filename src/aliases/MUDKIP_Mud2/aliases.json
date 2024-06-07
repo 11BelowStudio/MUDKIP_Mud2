@@ -2,6 +2,11 @@
   {
     "name": "semi_auto_fes",
     "regex": "^.+$",
+    "isActive": "false"
+  },
+  {
+    "name": "say_dreamword",
+    "regex": "^dwo(rd?)?",
     "isActive": "true"
   }
 ]

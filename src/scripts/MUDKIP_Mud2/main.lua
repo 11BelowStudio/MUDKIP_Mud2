@@ -8,6 +8,44 @@ if not MUDKIP_Mud2 then
 
   _G.MUDKIP_Mud2 = {}
 
+  MUDKIP_Mud2._VERSION = "1.1.0"
+
+  --[[--
+  simply returns the version of MUDKIP_Mud2
+  @treturn string version string
+  ]]
+  function MUDKIP_Mud2:getVersion()
+    return MUDKIP_Mud2._VERSION
+  end
+
+
+  --[[--
+  A wrapper function around cecho for MUDKIP to cecho MUDKIP-specific messages (with MUDKIP prefixes) to the main console.
+
+  @string _message - the message to cecho to the main console. colour will be reset by default.
+  @string[opt] _messageType - type of message. optional. 'error'/'warn'/'info' have preformatted types. nil/empty omitted. anything else displayed as-is.
+  ]]
+  function MUDKIP_Mud2:mcecho(_message, _messageType)
+    local prefix = "\n<b><DarkOrange>[<ansiLightCyan>MUDKIP<DarkOrange>]"
+    local type = ""
+    -- first check if the message string isn't nil
+    if (_messageType ~= nil) and (#string.gsub(_messageType, "^%s*(.-)%s*$", "%1") ~= 0) then
+      if _messageType == "error" then
+        type = " <ansiLightRed>ERROR!"
+      elseif _messageType == "warn" or _messageType == "warning" then
+        type = " <ansiYellow>WARN"
+      elseif _messageType == "info" then
+        type = " <ansiLightYellow>INFO"
+      else
+        type = " " .. _messageType
+      end
+    end
+    local endprefix = "</b></i></u></o></s><reset> - "
+
+    cecho(prefix .. type .. endprefix .. _message)
+  end
+
+
   local M2UI = {}
 
   MUDKIP_Mud2.ui = M2UI
@@ -30,6 +68,7 @@ if not MUDKIP_Mud2 then
     weather = "F",
     resetMins = 0
   }
+
 
   MUDKIP_Mud2.stats = M2Stats
 
@@ -158,9 +197,11 @@ if not MUDKIP_Mud2 then
 
   -- returns the current weather as a 6-character string
   function MUDKIP_Mud2:getWeatherString()
-    local weatherString = "Weather"
+    local weatherString = "??????"
     local _weather = M2Stats.weather
-    if _weather == "F" then
+    if _weather == nil or _weather == "" then
+      weatherString = "??????"
+    elseif _weather == "F" then
       weatherString = "Sunny&nbsp;"
     elseif _weather == "C" then
       weatherString = "Cloudy"
@@ -174,9 +215,23 @@ if not MUDKIP_Mud2 then
       weatherString = "TStorm"
     elseif _weather == "B" then
       weatherString = "Blizz&nbsp;"
+    else
+      weatherString = "?&nbsp;" .. _weather .. "&nbsp;?"
     end
 
     return weatherString
   end
 
+  function MUDKIP_Mud2:getDreamword()
+    return M2Stats.dreamWord
+  end
+
+  MUDKIP_Mud2._BLANK = '!!~MUDKIPBLANK~!! ".fo.qq !!~MUDKIPBLANK~!!'
+
+  function MUDKIP_Mud2:getBlankReplacePlaceholder()
+    return MUDKIP_Mud2._BLANK
+  end
+
+
+  MUDKIP_Mud2:mcecho("MUDKIP_Mud2 v" .. getPackageInfo("MUDKIP_Mud2","version") .. " initialized!\n", "info")
 end
