@@ -84,7 +84,7 @@ if you wish to contribute to the development of *MUDKIP*.
 
 ## CHANGELOG
 
-* **1.1.1** (7/6/2024)
+* **1.1.2** (7/6/2024)
   * Added automatic updates so you (hopefully) don't need to manually update MUDKIP any more :)
 
 
