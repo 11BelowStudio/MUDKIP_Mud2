@@ -3,8 +3,6 @@ name: Build project using muddler and upload artifact
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
