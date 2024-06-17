@@ -30,7 +30,7 @@ jobs:
         uses: 1arp/create-a-file-action@0.4.5
         # see https://github.com/marketplace/actions/create-a-file
         with:
-          path: 'src/resources'
+          path: './'
           isAbsolutePath: false
           file: 'version.txt'
           content: ${{ env.mfile_version }}
@@ -60,7 +60,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         # see https://github.com/marketplace/actions/create-release
         with:
-          artifacts: "build/MUDKIP_Mud2.mpackage,src/resources/version.txt"
+          artifacts: "build/MUDKIP_Mud2.mpackage,version.txt"
           allowUpdates: true
           bodyFile: "./README.md"
           tag: ${{ env.mfile_version }}

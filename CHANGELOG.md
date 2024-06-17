@@ -1,6 +1,22 @@
 # CHANGELOG
 
+## 1.2.0
+
+*17/6/2024*
+
+* Rewrote the automatic update code a little bit.
+* Using the `dword` alias will clear the known dreamword.
+  * Also added a `DWORD` alias for saying the dreamword IN CAPITALS (for personae who tend to say things in capitals)
+* Added an alias to fix accidentally putting an 's' at the end of emote-y commands whilst in game (correcting `smiles` to `smile`, `waves` into `wave`, `laughs` into `laugh` etc).
+* Renamed the package to `Multi User Dungeon Kool Informational Package for MUD2` (says `Package` instead of `Panels`)
+
 ## 1.1.2
+
+*7/6/2024*
+
+* Fixed automatic updates (forgot to delete the downloaded version check file :P)
+
+## 1.1.1
 
 *7/6/2024*
 

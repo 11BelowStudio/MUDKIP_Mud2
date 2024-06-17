@@ -1,8 +1,8 @@
 # MUDKIP_Mud2
 
-## Multi User Dungeon Kool Informational Panels (for playing MUD2 with Mudlet)
+## Multi User Dungeon Kool Informational Package (for playing MUD2 with Mudlet)
 
-**MUDKIP** is a plucky little [Mudlet](https://www.mudlet.org) plugin
+**MUDKIP** is a plucky little [Mudlet](https://www.mudlet.org) package
 I bodged together, which adds some Kool Informational Panels
 that might be of use whilst one is playing *MUD2*.
 
@@ -53,13 +53,17 @@ whistles like speedwalking, fancy maps, re-fighting, etc.
 
 ### Aliases
 
-* `dword`
-  * **automatic dreamword**
-    * If the dreamword is known, this will send a `say <dreamword>`
-    command to the game.
+* **automatic dreamword** `dword`
+  * If the dreamword is known, this will send a `say <dreamword>` command to the game.
     * If the dreamword is not known, MUDKIP will leave a message
     telling you that it doesn't know what the dreamword is.
   * `dwo` and `dwor` are also aliases for this.
+  * There's an uppercase variant which says the dreamword in uppercase instead.
+* **fixing emotes**
+  * Tired of accidentally sending `laughs`,`smiles`,`waves` etc
+    and then having the MUD2 parser complain about it?
+  * *MUDKIP_Mud2* will correct them to `laugh`, `smile`, `wave` etc, allowing you to perform those actions in peace.
+  * Many other verbs along these lines have also been fixed.
 
 ### API
 
@@ -84,12 +88,17 @@ if you wish to contribute to the development of *MUDKIP*.
 
 ## CHANGELOG
 
-* **1.1.2** (7/6/2024)
-  * Added automatic updates so you (hopefully) don't need to manually update MUDKIP any more :)
+* **1.2.0** (`17/6/2024)
+  * Rewrote the automatic update code a little bit.
+  * Using the `dword` alias will clear the known dreamword.
+    * Also added a `DWORD` alias for saying the dreamword IN CAPITALS (for personae who tend to say things in capitals)
+  * Added an alias to fix accidentally putting an 's' at the end of emote-y commands whilst in game (correcting `smiles` to `smile`, `waves` into `wave`, `laughs` into `laugh` etc).
+  * Slight rebrand for the package (P stands for 'Package' instead of 'Panels' now)
 
-
-See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/CHANGELOG.md) for the full changelog.
+See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/blob/main/CHANGELOG.md) for the full changelog.
 
 ## TODO
 
 * see what people want I guess
+* get the auto-update to check the tag on the latest release on git or something like that instead of the release version.txt(?)
+
