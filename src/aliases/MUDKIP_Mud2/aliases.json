@@ -6,7 +6,17 @@
   },
   {
     "name": "say_dreamword",
-    "regex": "^dwo(rd?)?",
+    "regex": "^d[Ww][Oo]([Rr][Dd]?)?$",
     "isActive": "true"
+  },
+  {
+    "name": "say_dreamword_uppercase",
+    "regex": "^D[Ww][Oo]([Rr][Dd]?)?$",
+    "isActive": "true"
+  },
+  {
+    "name":"emotes_with_s",
+    "isActive":"true",
+    "regex":"(?i)^(?<emote>bay|bark|blink|cackle|cheer|chuckle|drool|duck|flip|frown|gasp|giggle|glare|grin|groan|growl|gurgle|howl|laugh|leer|nod|point|ponder|pounce|pucker|purr|quack|roar|scream|shake|shiver|shout|shrug|sing|smile|smirk|spin|stammer|think|twiddle|wait|(re)?wave|whisper|wink|woof|yodel|yawn)s$"
   }
 ]

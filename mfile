@@ -1,8 +1,8 @@
 {
   "package": "MUDKIP_Mud2",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "author": "11BelowStudio",
-  "title": "Multi User Dungeon Kool Informational Panels (for playing MUD2 with Mudlet)",
+  "title": "Multi User Dungeon Kool Informational Package (for playing MUD2 with Mudlet)",
   "outputFile": true,
   "icon": "mudkip.png"
 }

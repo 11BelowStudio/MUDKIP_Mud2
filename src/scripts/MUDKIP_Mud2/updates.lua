@@ -1,7 +1,7 @@
 --[[
 THE AUTO-UPDATER FOR MUDKIP_Mud2
 
-heavily ripped off from https://forums.mudlet.org/viewtopic.php?f=6&t=4400&p=20635&hilit=update#p20635
+heavily ripped off from https://forums.mudlet.org/viewtopic.php?p=20504
 (DSL PNP 4.0 Main Script, Zachary Hiland, 2/09/2014)
 
 Shoutouts to demonnic for providing the lua code to actually get the package installed and such
@@ -17,14 +17,13 @@ local defaults = {
 	version_check_download = "version.txt",
 	version_url = "",
 	file_path = "",
-	version_check_save = "dl_version.txt",
-	versions_file_name = "version.txt",
+	version_check_save = "dl_version.txt"--,
+	--versions_file_name = "version.txt",
 }
 defaults.package_url = defaults.download_path .. defaults.package_name .. ".mpackage"
 defaults.version_url = defaults.download_path .. defaults.version_check_download
 defaults.file_path = getMudletHomeDir() .. "/".. defaults.package_name .. "/"
-
-
+defaults.temp_file_path = getMudletHomeDir() .. "/" .. defaults.package_name ..  "_temp" .. "/"
 
 local download_queue = download_queue or {}
 local downloading = false
@@ -34,7 +33,12 @@ local scripts_list = {}
 local init_list = {}
 local event_list = {}
 
+--[[
+Attempts to open a file to read/write/append/modify.
 
+If file could be read, returns table of file {name:str,mode:str,type:"fileIO_file",contents:{str}} and a nil
+If it couldn't be read, returns a nil and a string with info about the error.
+]]
 local function fileOpen(filename,mode)
 	local errors
 	mode = mode or "read"
@@ -123,18 +127,58 @@ local function update_the_package()
 	end)
 end
 
-local function load_package_xml()
+local function load_package_xml(path)
+
+
+	if path ~= defaults.temp_file_path .. defaults.package_name.. ".xml" then
+		if MUDKIP_Mud2 then
+			MUDKIP_Mud2:mcecho("Given unexpected .xml file (".. path .."), aborting! (please install the update manually.)", "error")
+		else
+			cecho("\n<b><ansiLightRed>ERROR</b><reset> - Given unexpected .xml file (".. path .."), aborting! (please install the update manually.)\n")
+			return
+		end
+	end
+
+
 	-- uninstall old package
 	uninstallPackage(defaults.package_name)
+
+	-- wipe old package variables etc from memory
+	_G.MUDKIP_Mud2 = nil
+
 	-- install new package
-	installPackage(defaults.download_path .. defaults.package_name .. ".xml")
+	tempTimer(1, function()
+		installPackage(path)
+		os.remove(path)
+		lfs.rmdir(defaults.temp_file_path)
+	end)
 end
 
-local function load_package_mpackage()
+local function load_package_mpackage(path)
+
+	if path ~= defaults.temp_file_path .. defaults.package_name.. ".mpackage" then
+		if MUDKIP_Mud2 then
+			MUDKIP_Mud2:mcecho("Given unexpected .mpackage file (".. path .."), aborting! (please install the update manually.)", "error")
+		else
+			cecho("\n<b><ansiLightRed>ERROR</b><reset> - Given unexpected .mpackage file (".. path .."), aborting! (please install the update manually.)\n")
+			return
+		end
+	end
+
 	-- uninstall old package
 	uninstallPackage(defaults.package_name)
+
+	-- wipe old package variables etc from memory
+	_G.MUDKIP_Mud2 = nil
+
 	-- install new package
-	installPackage(defaults.download_path .. defaults.package_name .. ".mpackage")
+	tempTimer(1, function()
+		installPackage(path)
+		--installPackage(defaults.temp_file_path .. defaults.package_name .. ".mpackage")
+		os.remove(path)
+		lfs.rmdir(defaults.temp_file_path)
+	end)
+	--installPackage(defaults.download_path .. defaults.package_name .. ".mpackage")
 end
 
 
@@ -144,7 +188,7 @@ local function start_download()
 	-- get info from queue
 	local info = download_queue[1]
   if MUDKIP_Mud2 then
-		MUDKIP_Mud2:mcecho("Downloading remote version file " .. info[2] .. " to " .. info[1], "info")
+		MUDKIP_Mud2:mcecho("Downloading remote file " .. info[2] .. " to " .. info[1], "info")
 	else
 		cecho("\n<b><ansiLightYellow>INFO</b><reset> - Downloading remote version file " .. info[2] .. " to " .. info[1] .. "\n")
 	end
@@ -204,33 +248,35 @@ end
 
 local function get_version_check()
 	-- create MUDKIP_Mud2 folder in Mudlet home directory if necessary
-	lfs.mkdir(getMudletHomeDir() .. "/" .. defaults.package_name)
+	lfs.mkdir(defaults.file_path)
 	-- download current version info
 	queue_download(defaults.file_path .. defaults.version_check_save, defaults.download_path .. defaults.version_check_download)
 end
 
 local function check_versions()
-	local version_path = defaults.file_path .. defaults.versions_file_name
+
+	
+
+	--local version_path = defaults.file_path .. defaults.versions_file_name
 	local dl_path = defaults.file_path .. defaults.version_check_save
 	local dl_version, curr_version
-	local dl_file, version_file
+	local dl_file, dl_errors--, version_file
 	
 	
 	-- read in check file
-	dl_file = fileOpen(dl_path,"read")
-	if io.exists(version_path) then
-		-- read in version file
-		version_file = fileOpen(version_path,"read")
-	else
-		-- create new version file
-    local temp_v_file = fileOpen(version_path, "write")
-    temp_v_file.contents = {getPackageInfo(defaults.package_name,"version")}
-    fileClose(temp_v_file)
+	dl_file, dl_errors = fileOpen(dl_path,"read")
 
-		version_file = fileOpen(version_path,"read")
+	if dl_file == nil then
+		-- if something's gone AWOL and we couldn't read the file
+		if MUDKIP_Mud2 then
+			MUDKIP_Mud2:mcecho("Could not read remote version info file, aborting auto-update routine. (".. dl_errors ..")", "error")
+		else
+			cecho("\n<b><ansiLightRed>ERROR</b><reset> - Could not read remote version info file, aborting auto-update routine. (".. dl_errors ..")\n")
+			return
+		end
 	end
 
-  curr_version = version_file.contents[1]
+  curr_version = getPackageInfo(defaults.package_name,"version") --version_file.contents[1]
   dl_version = dl_file.contents[1]
 
   if MUDKIP_Mud2 then
@@ -240,7 +286,7 @@ local function check_versions()
   end
 
 	-- close the files (we don't need them any more)
-	fileClose(version_file)
+	--fileClose(version_file)
 	fileClose(dl_file)
 
 	os.remove(dl_path)
@@ -251,7 +297,8 @@ local function check_versions()
 		else
 			cecho("\n<b><ansiLightYellow>INFO</b><reset> - Attempting to update MUDKIP to v" .. dl_version .."\n")
 		end
-    update_the_package()
+		M2Updates:update_package()
+    --update_the_package()
 	else
 		if MUDKIP_Mud2 then
 			MUDKIP_Mud2:mcecho("MUDKIP_Mud2 is up-to-date, have a nice day :)", "info")
@@ -259,6 +306,8 @@ local function check_versions()
 			cecho("\n<b><ansiLightYellow>INFO</b><reset> - MUDKIP_Mud2 is up-to-date, have a nice day :)\n")
 		end
   end
+
+	
 
 end
 
@@ -273,9 +322,9 @@ local function finish_download(path)
 	if string.find(path,defaults.version_check_save) then
 		check_versions()
 	elseif string.find(path,".mpackage") then
-		--load_package_mpackage()
+		load_package_mpackage(path)
   elseif string.find(path,".xml") then
-		--load_package_xml()
+		load_package_xml(path)
 	end
 end
 
@@ -286,17 +335,17 @@ local function fail_download(...)
 	if MUDKIP_Mud2 then
 		MUDKIP_Mud2:mcecho("failed downloading " .. arg[2] .. arg[1], "error")
 	else
-		cecho("\n<b><ansiBrightRed>ERROR</b><reset> - failed downloading " .. arg[2] .. arg[1].. "\n")
+		cecho("\n<b><ansiLightRed>ERROR</b><reset> - failed downloading " .. arg[2] .. arg[1].. "\n")
 	end
 
 	--table.insert(unavailable, arg[1])
 end
 
 function M2Updates:update_package()
-	-- create MUDKIP_Mud2 folder in Mudlet home directory if necessary
-	--lfs.mkdir(getMudletHomeDir() .. "/MUDKIP_Mud2")
+	-- create MUDKIP_Mud2_temp folder in Mudlet home directory if necessary
+	lfs.mkdir(defaults.temp_file_path)
 	-- download newest package
-  --queue_download(defaults.file_path .. defaults.package_name .. ".xml", defaults.download_path .. defaults.package_name .. ".xml")
+	queue_download(defaults.temp_file_path .. defaults.package_name .. ".mpackage", defaults.download_path .. defaults.package_name .. ".mpackage")
 end
 
 function M2Updates:update_scripts()
