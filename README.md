@@ -72,8 +72,10 @@ whistles like speedwalking, fancy maps, re-fighting, etc.
 * Everything's contained within the global `MUDKIP_Mud2` table.
 * The stats etc with the current state of your persona are
   in the `MUDKIP_Mud2.stats` table.
+* Misc utils are in `MUDKIP_Mud2.utils`.
 * UI stuff is held in `MUDKIP_Mud2.ui`
 * Auto-update stuff is held in `MUDKIP_Mud2.updates`
+* Stuff related to the enhanced `map` command output is in `MUDKIP_Mud2.map`
 
 ## Final thoughts, how to contribute, thanks, things like that
 
@@ -88,12 +90,11 @@ if you wish to contribute to the development of *MUDKIP*.
 
 ## CHANGELOG
 
-* **1.2.0** (`17/6/2024)
-  * Rewrote the automatic update code a little bit.
-  * Using the `dword` alias will clear the known dreamword.
-    * Also added a `DWORD` alias for saying the dreamword IN CAPITALS (for personae who tend to say things in capitals)
-  * Added an alias to fix accidentally putting an 's' at the end of emote-y commands whilst in game (correcting `smiles` to `smile`, `waves` into `wave`, `laughs` into `laugh` etc).
-  * Slight rebrand for the package (P stands for 'Package' instead of 'Panels' now)
+* **1.3.0** (`18/6/2024`)
+  * The output of `map` is now on 3 lines (not 11) and is now ***CLICKABLE!*** so you can go in a certain direction *without* needing to type stuff in (just click on the appropriate thingy!)
+    * Remember that MUD2 allows you to use `auto map` to automagically send a `map` command whenever you move to a new room!
+    * (note: only the most recent `map` output has clickable directions, to avoid potential misclicks whilst scrolling up)
+  * also added a couple more typo-correction aliases
 
 See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/blob/main/CHANGELOG.md) for the full changelog.
 
@@ -101,4 +102,3 @@ See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/blob/main/CHANGE
 
 * see what people want I guess
 * get the auto-update to check the tag on the latest release on git or something like that instead of the release version.txt(?)
-

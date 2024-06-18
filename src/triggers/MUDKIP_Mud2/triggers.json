@@ -76,11 +76,10 @@
   {
     "name": "MUDKIP_Mud2_on_prompt",
     "isActive": "yes",
-    "multiline": "yes",
     "patterns": [
       {
-        "pattern":"^\\*(\\s*)$",
-        "type": "regex"
+        "pattern":"*",
+        "type": "exactMatch"
       }
     ]
   },
@@ -155,6 +154,33 @@
       {
         "pattern":"^(\\*)?Your stamina is (?<stam>\\d+)\\.$",
         "type": "regex"
+      }
+    ]
+  },
+  {
+    "name": "map_stuff",
+    "isActive": "yes",
+    "isFolder": "yes",
+    "children": [
+      {
+        "name": "map_start_end_line",
+        "isActive": "yes",
+        "patterns": [
+          {
+            "pattern":"^ {16,19}(?<updown>..) $",
+            "type": "regex"
+          }
+        ]
+      },
+      {
+        "name": "map_middle_lines",
+        "isActive": "yes",
+        "patterns": [
+          {
+            "pattern":"^(?<w>..) (?<ns>..) (?<e>..) $",
+            "type": "regex"
+          }
+        ]
       }
     ]
   }

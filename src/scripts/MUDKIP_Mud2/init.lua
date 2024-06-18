@@ -49,6 +49,13 @@ if not MUDKIP_Mud2 then
 
   MUDKIP_Mud2.updates = M2Updates
 
+  local M2Utils = {}
+
+  MUDKIP_Mud2.utils = {}
+
+  local M2Map = {}
+
+  MUDKIP_Mud2.map = M2Map
 
   local M2UI = {}
 

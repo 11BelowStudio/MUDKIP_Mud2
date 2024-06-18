@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 1.3.0
+
+*18/6/2024*
+
+* The output of `map` is now on 3 lines (not 11) and is now ***CLICKABLE!*** so you can go in a certain direction *without* needing to type stuff in (just click on the appropriate thingy!)
+  * Remember that MUD2 allows you to use `auto map` to automagically send a `map` command whenever you move to a new room!
+  * (note: only the most recent `map` output has clickable directions, to avoid potential misclicks whilst scrolling up)
+* also added a couple more typo-correction aliases
+* auto-fes timer is now 15 seconds (was 20)
+
 ## 1.2.0
 
 *17/6/2024*

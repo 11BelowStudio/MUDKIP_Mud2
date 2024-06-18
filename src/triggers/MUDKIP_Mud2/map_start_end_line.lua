@@ -1,16 +1,14 @@
-if copy2decho() ~= "<0,0,255:0,0,0>*<r>" then
-  return
-end
+--display("updown:" .. copy2decho())
+--display("updown:" .. copy2decho(matches.updown))
+local updown = copy2decho(matches.updown)
 
-raiseEvent("MUDKIP_Mud2 on prompt")
-
-MUDKIP_Mud2.map:resetMapLine()
-MUDKIP_Mud2.utils:clearBlankAndDupeLines()
-
---[[
 local thisLine = getCurrentLine()
 local thisLineNumber = getLineNumber()
 local blankLine = MUDKIP_Mud2:getBlankReplacePlaceholder()
+replaceLine(blankLine)
+deleteLine()
+MUDKIP_Mud2.utils:clearBlankAndDupeLines()
+--[[
 local foundNonDuplicateLine = false
 --local thisUnformatted = copy2decho()
 --display(thisUnformatted)
@@ -29,6 +27,6 @@ repeat
     moveCursor(0, getLineNumber() - 1)
   end
 until foundNonDuplicateLine
+]]--
 
-moveCursor(0, thisLineNumber)
---]]
+MUDKIP_Mud2.map:setUpOrDown(updown)
