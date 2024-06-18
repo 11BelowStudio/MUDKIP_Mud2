@@ -131,12 +131,16 @@ local function load_package_xml(path)
 
 
 	if path ~= defaults.temp_file_path .. defaults.package_name.. ".xml" then
+		-- if this isn't the updated version of MUDKIP_Mud2, we don't do anything.
+		return
+		--[[
 		if MUDKIP_Mud2 then
 			MUDKIP_Mud2:mcecho("Given unexpected .xml file (".. path .."), aborting! (please install the update manually.)", "error")
 		else
 			cecho("\n<b><ansiLightRed>ERROR</b><reset> - Given unexpected .xml file (".. path .."), aborting! (please install the update manually.)\n")
 			return
 		end
+		]]
 	end
 
 
@@ -157,12 +161,15 @@ end
 local function load_package_mpackage(path)
 
 	if path ~= defaults.temp_file_path .. defaults.package_name.. ".mpackage" then
+		-- if this isn't the updated version of MUDKIP_Mud2, we don't do anything.
+		--[[
 		if MUDKIP_Mud2 then
 			MUDKIP_Mud2:mcecho("Given unexpected .mpackage file (".. path .."), aborting! (please install the update manually.)", "error")
 		else
 			cecho("\n<b><ansiLightRed>ERROR</b><reset> - Given unexpected .mpackage file (".. path .."), aborting! (please install the update manually.)\n")
 			return
 		end
+		--]]
 	end
 
 	-- uninstall old package

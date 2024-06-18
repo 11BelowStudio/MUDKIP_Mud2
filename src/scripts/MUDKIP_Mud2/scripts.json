@@ -5,12 +5,22 @@
     "eventHandlerList": []
   },
   {
+    "name":"utils",
+    "isActive":"yes",
+    "eventHandlerList": []
+  },
+  {
     "name":"UI",
     "isActive":"yes",
     "eventHandlerList": []
   },
   {
     "name":"updates",
+    "isActive":"yes",
+    "eventHandlerList": []
+  },
+  {
+    "name":"clickable_map",
     "isActive":"yes",
     "eventHandlerList": []
   }
