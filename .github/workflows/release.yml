@@ -13,6 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3.3.0
 
+      - name: Copy mfile to release.json
+        # this is because 'JSON to variables' doesn't like mfile (stinky)
+        run: |
+          cp ./mfile ./release.json
+
       - name: JSON to variables
         # see https://github.com/antifree/json-to-variables
         # You may pin to the exact commit or the version.
