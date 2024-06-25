@@ -1,4 +1,4 @@
-MUDKIP_Mud2:updateQs(
+MUDKIP_Mud2.stats:updateQs(
 	matches.effStr,
 	matches.effDex,
 	matches.sta,

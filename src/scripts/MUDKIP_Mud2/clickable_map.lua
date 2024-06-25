@@ -7,7 +7,7 @@ provided by MUDKIP_Mud2.
 ]]--
 
 
-local M2Map = MUDKIP_Mud2.map
+local M2Map = MUDKIP_Mud2.map or {}
 
 -- initialization of stuff
 

@@ -1,1 +1,1 @@
-MUDKIP_Mud2:clearDreamword()
+MUDKIP_Mud2.stats:clearDreamword()

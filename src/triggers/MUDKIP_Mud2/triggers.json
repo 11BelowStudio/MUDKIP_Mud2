@@ -85,7 +85,7 @@
   },
   {
     "name":"not_updating_persona",
-    "isActive": "no",
+    "isActive": "yes",
     "multiline": "yes",
     "filter": "yes",
     "patterns": [

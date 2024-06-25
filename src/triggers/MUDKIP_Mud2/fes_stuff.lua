@@ -21,7 +21,7 @@ if true then
 end
 
 
-MUDKIP_Mud2:updateFes(
+MUDKIP_Mud2.stats:updateFes(
 	matches.sta,
 	matches.maxSta,
 	matches.effStr,

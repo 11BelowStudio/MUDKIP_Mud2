@@ -90,11 +90,11 @@ if you wish to contribute to the development of *MUDKIP*.
 
 ## CHANGELOG
 
-* **1.3.0** (`18/6/2024`)
-  * The output of `map` is now on 3 lines (not 11) and is now ***CLICKABLE!*** so you can go in a certain direction *without* needing to type stuff in (just click on the appropriate thingy!)
-    * Remember that MUD2 allows you to use `auto map` to automagically send a `map` command whenever you move to a new room!
-    * (note: only the most recent `map` output has clickable directions, to avoid potential misclicks whilst scrolling up)
-  * also added a couple more typo-correction aliases
+* **1.3.1** (`26/6/2024`)
+  * Added some code to make MUDKIP clean up after itself after it gets uninstalled.
+  * Stamina is now displayed as 0 if you get permadeathed in the ways which bypass stamina.
+  * Some refactorings have happened.
+  * Removed some deprecated legacy code.
 
 See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/blob/main/CHANGELOG.md) for the full changelog.
 

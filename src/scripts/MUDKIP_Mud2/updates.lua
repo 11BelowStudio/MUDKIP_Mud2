@@ -94,8 +94,8 @@ local function fileClose(file)
 end
 
 -- THIS FUNCTION INITIALIZES SCRIPTS, GETS CALLED ON CONNECT/RECONNECT
-
 function M2Updates:initialize()
+
   --[[
 	--init_list = table.n_union(defaults.initialize, MUDKIP_Mud2.config.initialize or {})
 	--event_list = table.n_union(defaults.connect_events, MUDKIP_Mud2.config.connect_events or {})
@@ -110,21 +110,13 @@ function M2Updates:initialize()
   --]]
 end
 
--- This function uninstalls the package and installs the updated version of it
--- thanks to demonnic for helping me to solve the issue of installing it :)
-local function update_the_package()
-	local download_here = defaults.package_url
 
-	-- uninstall old package
-	uninstallPackage(defaults.package_name)
-	-- wipe old package variables etc from memory
-	_G.MUDKIP_Mud2 = nil
+-- is M2Updates currently running an auto update?
+M2Updates.is_updating = false
 
-	-- sets up a timer to install the updated package after like 2 seconds
-	tempTimer(2, function()
-		installPackage(download_here)
-		
-	end)
+-- checks if we're currently running an auto update.
+function M2Updates:isUpdating()
+	return self.is_updating
 end
 
 local function load_package_xml(path)
@@ -143,7 +135,7 @@ local function load_package_xml(path)
 		]]
 	end
 
-
+	M2Updates.is_updating = true
 	-- uninstall old package
 	uninstallPackage(defaults.package_name)
 
@@ -161,6 +153,7 @@ end
 local function load_package_mpackage(path)
 
 	if path ~= defaults.temp_file_path .. defaults.package_name.. ".mpackage" then
+		return
 		-- if this isn't the updated version of MUDKIP_Mud2, we don't do anything.
 		--[[
 		if MUDKIP_Mud2 then
@@ -171,6 +164,8 @@ local function load_package_mpackage(path)
 		end
 		--]]
 	end
+
+	M2Updates.is_updating = true
 
 	-- uninstall old package
 	uninstallPackage(defaults.package_name)
