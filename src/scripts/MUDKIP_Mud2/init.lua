@@ -8,7 +8,9 @@ if not MUDKIP_Mud2 then
 
   _G.MUDKIP_Mud2 = {}
 
-  MUDKIP_Mud2._VERSION = getPackageInfo("MUDKIP_Mud2","version")
+  MUDKIP_Mud2.AppName = "__PKGNAME__"
+
+  MUDKIP_Mud2._VERSION = getPackageInfo("__PKGNAME__","version")
 
   --[[--
   simply returns the version of MUDKIP_Mud2
@@ -45,204 +47,98 @@ if not MUDKIP_Mud2 then
     cecho("main",prefix .. type .. endprefix .. _message)
   end
 
-  local M2Updates = {}
+  MUDKIP_Mud2.updates = MUDKIP_Mud2.updates or {}
 
-  MUDKIP_Mud2.updates = M2Updates
+  local M2Updates = MUDKIP_Mud2.updates
 
-  local M2Utils = {}
-
-  MUDKIP_Mud2.utils = {}
-
-  local M2Map = {}
-
-  MUDKIP_Mud2.map = M2Map
-
-  local M2UI = {}
-
-  MUDKIP_Mud2.ui = M2UI
-
-  local M2Stats = {
-    stamina = 50,
-    maxStamina = 50,
-    effStr = 0,
-    str = 0,
-    effDex = 0,
-    dex = 0,
-    magic = 0,
-    maxMagic = 50,
-    pts = 0,
-    dreamWord = "",
-    blind = false,
-    deaf = false,
-    crippled = false,
-    dumb = false,
-    weather = "F",
-    resetMins = 0
-  }
-
-
-  MUDKIP_Mud2.stats = M2Stats
-
-  function M2Stats:toStringTemp()
-    return "sta:" .. tostring(self.stamina)..", maxSta: "..tostring(self.maxStamina)..", effStr: "..tostring(self.effStr) .. ", str: " ..tostring(self.str) .. ", effDex: "..tostring(self.effDex)..", dex: "..tostring(self.dex)..", magic: "..tostring(self.magic)..", maxMagic: "..tostring(self.maxMagic)..", pts: "..tostring(self.pts)..", blind: "..tostring(self.blind)..", deaf: "..tostring(self.deaf)..", crip: "..tostring(self.crippled)..", dumb: " .. tostring(self.dumb)..", mins: "..tostring(self.resetMins)..", weather: "..self.weather..", dWord: " .. self.dreamWord
+  function MUDKIP_Mud2:getUpdates()
+    return self.updates
   end
 
-  -- Called by the fes trigger to update status based on fes output
-  function MUDKIP_Mud2:updateFes(
-    _sta, _maxSta, _effStr, _str, _effDex, _dex, _mag, _maxMag,
-    _pts, _blind, _deaf, _crip, _dumb, _mins, _weather
-  )
-    
-    M2Stats.stamina = tonumber(_sta)
-    M2Stats.maxStamina = tonumber(_maxSta)
-    M2Stats.effStr = tonumber(_effStr)
-    M2Stats.str = tonumber(_str)
-    M2Stats.effDex = tonumber(_effDex)
-    M2Stats.dex = tonumber(_dex)
-    M2Stats.magic = tonumber(_mag)
-    M2Stats.maxMagic = tonumber(_maxMag)
-    M2Stats.pts = tonumber(_pts)
-    M2Stats.blind = (_blind == "Y")
-    M2Stats.deaf = (_deaf == "Y")
-    M2Stats.crippled = (_crip == "Y")
-    M2Stats.dumb = (_dumb == "Y")
-    M2Stats.resetMins = tonumber(_mins)
-    M2Stats.weather = _weather
+  MUDKIP_Mud2.utils = MUDKIP_Mud2.utils or {}
 
-    M2UI:updateTheStuff()
-
-    --cecho("\n"..M2Stats:toStringTemp())
+  function MUDKIP_Mud2:getUtils()
+    return self.utils
   end
 
-  -- Called by the qs trigger to update the stats based on parsed qs output.
-  -- note: _mag may be nil.
-  function MUDKIP_Mud2:updateQs(
-    _effStr, _effDex, _sta, _maxSta, _mag, _pts
-  )
+  local M2Utils = MUDKIP_Mud2.utils
 
-    M2Stats.stamina = tonumber(_sta)
-    M2Stats.maxStamina = tonumber(_maxSta)
-    M2Stats.effStr = tonumber(_effStr)
-    M2Stats.effDex = tonumber(_effDex)
-    M2Stats.pts = tonumber(_pts)
+  MUDKIP_Mud2.map = MUDKIP_Mud2.map or {}
 
-    local magic = tonumber(_mag)
-
-    if (magic ~= nil) then
-      M2Stats.magic = magic
-      if magic > M2Stats.maxMagic then
-        M2Stats.maxMagic = magic
-      end
-    else
-      M2Stats.magic = 0
-    end
-    M2UI:updateTheStuff()
-
-    --cecho("\n"..M2Stats:toStringTemp())
+  function MUDKIP_Mud2:getMap()
+    return self.map
   end
 
-  -- called by the stam update trigger to update stamina
-  -- note: _maxStam may be nil.
-  function MUDKIP_Mud2:updateStam(_stam, _maxStam)
+  local M2Map = MUDKIP_Mud2.map
 
-    M2Stats.stamina = tonumber(_stam)
-    local maxStam = tonumber(_maxStam)
-    if (maxStam ~= nil) then
-      -- only update maxStam if the stamina trigger showed maxStam
-      M2Stats.maxStamina = maxStam
-    end
+  --local M2UI = {}
 
-    if M2Stats.stamina > M2Stats.maxStamina then
-      M2Stats.maxStamina = M2Stats.stamina
-    end
+  MUDKIP_Mud2.ui = MUDKIP_Mud2.ui or {}
 
-    --cecho("\n"..M2Stats:toStringTemp())
+  local M2UI = MUDKIP_Mud2.ui
 
-    M2UI:updateTheStuff()
+  function MUDKIP_Mud2:getUI()
+    return self.ui
   end
 
-  -- updates known points for the persona automagically whenever points get updated 
-  function MUDKIP_Mud2:updatePoints(_pts)
-    M2Stats.pts = tonumber(_pts)
-    M2UI:updateTheStuff()
-    --cecho("\n"..M2Stats:toStringTemp())
+  MUDKIP_Mud2.stats = MUDKIP_Mud2.stats or {}
+
+  function MUDKIP_Mud2:getStats()
+    return self.stats
   end
 
-  function MUDKIP_Mud2:setDreamword(_dreamWord)
-    M2Stats.dreamWord = _dreamWord
-    --cecho("\n"..M2Stats:toStringTemp())
-    M2UI:updateTheStuff()
-  end
+  local M2Stats = MUDKIP_Mud2.stats
 
-  function MUDKIP_Mud2:clearDreamword()
-    M2Stats.dreamWord = ""
-    --cecho("\n"..M2Stats:toStringTemp())
-    M2UI:updateTheStuff()
-  end
+  
 
   MUDKIP_Mud2._isInGame = false
 
-  MUDKIP_Mud2._shouldSemiAutoFes = false
-
   -- use this to update whether or not the player is in game
   function MUDKIP_Mud2:setInGame(_isInGame)
-    MUDKIP_Mud2._isInGame = _isInGame
+    self._isInGame = _isInGame
   end
 
   -- returns true if currently in-game
   function MUDKIP_Mud2:isInGame()
-    return MUDKIP_Mud2._isInGame
+    return self._isInGame
   end
 
-  -- sets _shouldSemiAutoFes to true
-  function MUDKIP_Mud2:timeForSemiAutoFes()
-    MUDKIP_Mud2._shouldSemiAutoFes = true
-  end
-
-  -- obtains current _shouldSemiAutoFes, before resetting it to false
-  function MUDKIP_Mud2:checkResetSemiAutoFes()
-    local result = MUDKIP_Mud2._shouldSemiAutoFes
-    MUDKIP_Mud2._shouldSemiAutoFes = false
-    return result
-  end
-
-  -- returns the current weather as a 6-character string
-  function MUDKIP_Mud2:getWeatherString()
-    local weatherString = "??????"
-    local _weather = M2Stats.weather
-    if _weather == nil or _weather == "" then
-      weatherString = "??????"
-    elseif _weather == "F" then
-      weatherString = "Sunny&nbsp;"
-    elseif _weather == "C" then
-      weatherString = "Cloudy"
-    elseif _weather == "R" then
-      weatherString = "Rain&nbsp;&nbsp;"
-    elseif _weather == "S" then
-      weatherString = "Snow&nbsp;&nbsp;"
-    elseif _weather == "O" then
-      weatherString = "OvCast"
-    elseif _weather == "T" then
-      weatherString = "TStorm"
-    elseif _weather == "B" then
-      weatherString = "Blizz&nbsp;"
-    else
-      weatherString = "?&nbsp;" .. _weather .. "&nbsp;?"
-    end
-
-    return weatherString
-  end
-
-  function MUDKIP_Mud2:getDreamword()
-    return M2Stats.dreamWord
-  end
-
-  MUDKIP_Mud2._BLANK = '!!~MUDKIPBLANK~!! ".fo.qq !!~MUDKIPBLANK~!!'
+  -- hopefully nobody is going to be able to output this exact line.
+  MUDKIP_Mud2._BLANK = '!!~MUDKIPBLANK~!! ".fo.qq. ".fo.qq.$!!~MUDKIPBLANK~!!'
 
   function MUDKIP_Mud2:getBlankReplacePlaceholder()
-    return MUDKIP_Mud2._BLANK
+    return self._BLANK
   end
 
 
   MUDKIP_Mud2:mcecho("MUDKIP_Mud2 v" .. MUDKIP_Mud2:getVersion() .. " initialized!\n", "info")
+
+  -- this is called on an uninstall event.
+  function MUDKIP_Mud2:Uninstall(event, package)
+    -- if we've uninstalled MUDKIP_Mud2
+    if package == self.AppName then
+      local is_updating = self.updates:isUpdating()
+      if is_updating then
+        self:mcecho("MUDKIP_Mud2 auto update in progress!","info")
+      else
+        self:mcecho("Uninstalling MUDKIP_Mud2, please come back soon!","info")
+      end
+      self.ui:onUninstall()
+      _G.MUDKIP_Mud2 = nil
+      return false
+    else
+      return true
+    end
+  end
+
 end
+
+registerNamedEventHandler(
+  MUDKIP_Mud2.AppName,
+  "__PKGNAME__UninstallHandler",
+  "sysUninstallPackage",
+  function (event, package)
+    return MUDKIP_Mud2:Uninstall(event, package)
+  end,
+  true
+)

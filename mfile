@@ -1,6 +1,6 @@
 {
   "package": "MUDKIP_Mud2",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "author": "11BelowStudio",
   "title": "Multi User Dungeon Kool Informational Package (for playing MUD2 with Mudlet)",
   "outputFile": true,

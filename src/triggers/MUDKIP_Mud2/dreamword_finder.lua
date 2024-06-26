@@ -1,1 +1,1 @@
-MUDKIP_Mud2:setDreamword(multimatches[2].dreamword)
+MUDKIP_Mud2.stats:setDreamword(multimatches[2].dreamword)

@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 1.3.1
+
+*26/6/2024*
+
+* Added some code to make MUDKIP clean up after itself after it gets uninstalled.
+* Stamina is now displayed as 0 if you get permadeathed in the ways which bypass stamina.
+* Some refactorings have happened.
+* Removed some deprecated legacy code.
+
 ## 1.3.0
 
 *18/6/2024*

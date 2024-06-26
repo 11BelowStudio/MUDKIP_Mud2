@@ -1,1 +1,1 @@
-MUDKIP_Mud2:updatePoints(matches.pts:gsub(",", ""))
+MUDKIP_Mud2.stats:updatePoints(matches.pts:gsub(",", ""))
