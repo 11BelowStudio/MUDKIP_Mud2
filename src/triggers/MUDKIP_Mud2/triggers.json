@@ -154,6 +154,10 @@
       {
         "pattern":"^(\\*)?Your stamina is (?<stam>\\d+)\\.$",
         "type": "regex"
+      },
+      {
+        "pattern": "^(The )?(\\S+ )*\\S+ hits you \\((?<stam>\\d+)/(?<maxStam>\\d+)\\).$",
+        "type": "regex"
       }
     ]
   },

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.3.2
+
+*27/6/2024*
+
+* MUDKIP now recognizes the stamina update thing from `fightbrief` (hopefully)
+
 ## 1.3.1
 
 *26/6/2024*

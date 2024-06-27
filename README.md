@@ -90,11 +90,8 @@ if you wish to contribute to the development of *MUDKIP*.
 
 ## CHANGELOG
 
-* **1.3.1** (`26/6/2024`)
-  * Added some code to make MUDKIP clean up after itself after it gets uninstalled.
-  * Stamina is now displayed as 0 if you get permadeathed in the ways which bypass stamina.
-  * Some refactorings have happened.
-  * Removed some deprecated legacy code.
+* **1.3.2** (`27/6/2024`)
+  * Now (hopefully) works with the stamina update messages from `fightbrief`!
 
 See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/blob/main/CHANGELOG.md) for the full changelog.
 
