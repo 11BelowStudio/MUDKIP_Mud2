@@ -156,7 +156,7 @@
         "type": "regex"
       },
       {
-        "pattern": "^(The )?((\\S+ )*\\S+) hits you \\((?<stam>\\d+)/(?<maxStam>\\d+)\\).$",
+        "pattern": "^(The )?(\\S+ )*\\S+ hits you \\((?<stam>\\d+)/(?<maxStam>\\d+)\\).$",
         "type": "regex"
       }
     ]
