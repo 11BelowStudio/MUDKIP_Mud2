@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.3.3
+
+*24/7/2024*
+
+* Made MUDKIP look a bit less terrible on Mudlet 4.18.3 (seeing as that update changed a few things with geyser unexpectedly)
+
 ## 1.3.2
 
 *27/6/2024*
