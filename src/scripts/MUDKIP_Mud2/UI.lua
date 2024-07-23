@@ -34,7 +34,8 @@ M2UI.stambar =
     {
       name = "stambar",
       x = "1.25%", y = 0,
-      width = "47.5%", height = "100%"
+      width = "47.5%", height = "100%",
+      fontSize = getFontSize() * 0.75
     },
     M2UI.bottomPanel
   )
@@ -48,7 +49,8 @@ M2UI.magicbar =
     {
       name = "magicbar",
       x = "51.25%", y = 0,
-      width = "47.5%", height = "100%"
+      width = "47.5%", height = "100%",
+      fontSize = getFontSize() * 0.75
     },
     M2UI.bottomPanel
   )
@@ -73,7 +75,7 @@ end
     and an appropriate hex colour for it (green-red gradient)
 ]]--
 function M2UI:getPercentAndColor(_stat,_maxStat)
-  local percent = self:getPercent(_stat,_maxStat)
+  local percent = math.min(self:getPercent(_stat,_maxStat),100)
   local theColor = "#ff0000"
 
   if percent <= 5 then
@@ -97,9 +99,9 @@ function M2UI:getPercentAndColor(_stat,_maxStat)
   elseif percent <= 80 then
     theColor = "#448800"
   elseif percent == 100 then
-    theColor = "#00d000"
+    theColor = "#22aa00"
   else
-    theColor = "#00cc00"
+    theColor = "#339900"
   end
 
   return percent, theColor
@@ -114,17 +116,17 @@ function M2UI:updateStaminaBar(_stam,_maxStam,_percent,_color)
 
   local stamSuffix = ""
   if _percent <= 5 then
-    stamSuffix = ". So brave!"
+    stamSuffix = ". <i>So brave!</i>"
   elseif _percent <= 10 then
-    stamSuffix = ". You might want to consider fleeing."
+    stamSuffix = ". <i>You might want to consider fleeing.</i>"
   elseif _percent <= 20 then
-    stamSuffix = ". PANIC!"
+    stamSuffix = ". <i>PANIC!</i>"
   elseif _percent <= 25 then
-    stamSuffix = ". DANGER ZONE."
+    stamSuffix = ". <i>DANGER ZONE.</i>"
   elseif _percent <= 30 then
-    stamSuffix = ". Not good."
+    stamSuffix = ". <i>Not good.</i>"
   elseif _percent >= 100 then
-    stamSuffix = ". Good job!"
+    stamSuffix = ". <i>Good job!</i>"
   end
 
   self.stambar:setValue(_percent)
@@ -132,19 +134,19 @@ function M2UI:updateStaminaBar(_stam,_maxStam,_percent,_color)
   if _stam <= 0 then
     self.stambar:setText("You are dead.")
   else
-    self.stambar:setText("Stamina: " .. _stam .. "/" .. _maxStam .. stamSuffix)
+    self.stambar:setText("Stamina: <b>" .. _stam .. "</b>/" .. _maxStam .. stamSuffix)
   end
 
 end
 
 M2UI.magicbar:setColor("#800080")
-M2UI.magicbar:setText("Magic: ?/? [Please fes or qs]")
+M2UI.magicbar:setText("Magic: <b>?</b>/? [Please fes or qs]")
 M2UI.magicbar.text:setToolTip("Please fes so this bar will work thanks")
 
 
 function M2UI:updateMagicBar(_mag, _maxMag)
   -- this gets the percent as an integer, rounded to the nearest whole percent
-  local magicPercent = math.floor((_mag / _maxMag * 100) + 0.5)
+  local magicPercent = math.min(math.floor((_mag / _maxMag * 100) + 0.5),100)
 
   local magSuffix = ""
   local magicbar = self.magicbar
@@ -153,16 +155,16 @@ function M2UI:updateMagicBar(_mag, _maxMag)
     magicbar:setColor("#800080")
   elseif magicPercent <= 10 then
     magicbar:setColor("#200020")
-    magSuffix = ". Watch out!"
+    magSuffix = ". <i>Watch out!</i>"
   elseif magicPercent <= 20 then
     magicbar:setColor("#300030")
-    magSuffix = ". PANIC!"
+    magSuffix = ". <i>PANIC!</i>"
   elseif magicPercent <= 25 then
     magicbar:setColor("#400040")
-    magSuffix = ". DANGER ZONE."
+    magSuffix = ". <i>DANGER ZONE.</i>"
   elseif magicPercent <= 30 then
     magicbar:setColor("#500050")
-    magSuffix = ". Not good."
+    magSuffix = ". <i>Not good.</i>"
   elseif magicPercent <= 40 then
     magicbar:setColor("#600060")
   elseif magicPercent <= 60 then
@@ -171,7 +173,7 @@ function M2UI:updateMagicBar(_mag, _maxMag)
     magicbar:setColor("#800080")
   elseif magicPercent == 100 then
     magicbar:setColor("#a000a0")
-    magSuffix = ". Go FOD someone I guess???"
+    magSuffix = ". <i>Go FOD someone I guess???</i>"
   else
     magicbar:setColor("#900090")
   end
@@ -182,7 +184,7 @@ function M2UI:updateMagicBar(_mag, _maxMag)
     magicbar:setText("In terms of magic you have no magic.")
     magicbar.text:setToolTip("Go touch the touchstone smh my head")
   else
-    magicbar:setText("Magic: " .. _mag .. "/" .. _maxMag .. magSuffix)
+    magicbar:setText("Magic: <b>" .. _mag .. "</b>/" .. _maxMag .. magSuffix)
     magicbar.text:setToolTip("Have fun!")
   end
 end
@@ -193,34 +195,30 @@ M2UI.leftStats =
     {
       name = "leftStats",
       x = 0,y = 0,
-      width = "55%",height = "100%",
-      bgColor = "black",
+      width = "66%",height = "100%",
+      color = "#202020",
       message = " Sta:000/000&emsp;Dex:000/000 Str:000/000&emsp;Mag:000/000&emsp;Pts:000,000",
+      format = "l",
+      fontSize = getFontSize() * 0.66
     },
     M2UI.topPanel
   )
 
-M2UI.leftStats:setStyleSheet([[
-  qproperty-alignment: 'AlignLeft | AlignVCenter';
-  qproperty-font: ]].. getFontSize() .. [[pt ]]..getFont()..[[;
-]])
 
 M2UI.rightStats =
   Geyser.Label:new(
     {
       name = "rightStats",
-      x="55%",y=0,
-      width = "45%",height = "100%",
-      bgColor = "black",
-      message = "placeholder placeholder"
+      x="63%",y=0,
+      width = "37%",height = "100%",
+      color = "#202020",
+      message = "placeholder placeholder",
+      format = "r",
+      fontSize = getFontSize() * 0.66
     },
     M2UI.topPanel
   )
 
-M2UI.rightStats:setStyleSheet([[
-  qproperty-alignment: 'AlignRight | AlignVCenter';
-  qproperty-font: ]].. getFontSize() .. [[pt ]]..getFont()..[[;
-]])
 
 -- function by Paul Kulchenko
 -- https://stackoverflow.com/a/10990879
@@ -269,6 +267,31 @@ end
 function M2UI:updateTheStuff()
   -- getting stuff as local variables so there's less hassle writing it out all over again
   local _stats = MUDKIP_Mud2.stats
+  
+  if false then -- this is here for checking what this looks like with a LOT of numbers and stats
+    _stats = {
+      stamina = 888,
+      maxStamina = 888,
+      effStr = 888,
+      str = 888,
+      effDex = 828,
+      dex = 847,
+      magic = 888,
+      maxMagic = 888,
+      pts = 8888888,
+      dreamWord = "sghgasgagasfg",
+      blind = true,
+      deaf = true,
+      crippled = true,
+      dumb = true,
+      weather = "TStorm",
+      resetMins = 163,
+      initialized = false
+    }
+    function _stats:getWeatherString()
+      return "TStorm"
+    end
+  end
   
   local _stam = _stats.stamina
   local _maxStam = _stats.maxStamina
@@ -331,14 +354,14 @@ function M2UI:updateTheStuff()
   )
 
   local ptsString = string.format(
-    '&nbsp;&nbsp;&nbsp;Pts:<b>%-7s</b>',
+    '&nbsp;&nbsp;Pts:<b>%-7s</b>',
     numWithCommas(_pts)
   )
 
   local leftLabelText = string.format(
-    [[<left><p style="color:#008080;">
-    %s%s %s %s %s %s
-    [MUDKIP v%s]</p></left>]],
+    [[<span style="color:#008080;font-family:monospace;">
+    %s %s %s %s %s %s
+    [MUDKIP v%s]</span>]],
     stamInfo, magicInfo, dexInfo, strInfo, ptsString, statusText(_isBlind,_isDeaf,_isCrippled,_isDumb),
     MUDKIP_Mud2:getVersion()
   )
@@ -367,9 +390,9 @@ function M2UI:updateTheStuff()
   )
 
   local rightLabelText = string.format(
-    [[<right><p style="color:#008080;">
+    [[<right style="color:#008080;">
     %s&nbsp;&nbsp;&nbsp;%s&nbsp;&nbsp;&nbsp;%s 
-    </p></right>]],
+    </right>]],
     dreamWordText, weatherText, timeLeftText
   )
 

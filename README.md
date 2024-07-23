@@ -90,8 +90,8 @@ if you wish to contribute to the development of *MUDKIP*.
 
 ## CHANGELOG
 
-* **1.3.2** (`27/6/2024`)
-  * Now (hopefully) works with the stamina update messages from `fightbrief`!
+* **1.3.3** (`24/7/2024`)
+  * Made MUDKIP look a bit less horrible on Mudlet 4.18.3
 
 See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/blob/main/CHANGELOG.md) for the full changelog.
 
