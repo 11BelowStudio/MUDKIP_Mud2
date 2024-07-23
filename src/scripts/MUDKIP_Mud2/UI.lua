@@ -359,9 +359,9 @@ function M2UI:updateTheStuff()
   )
 
   local leftLabelText = string.format(
-    [[<span style="color:#008080;font-family:monospace;">
+    [[<left style="color:#008080;">
     %s %s %s %s %s %s
-    [MUDKIP v%s]</span>]],
+    [MUDKIP v%s]</left>]],
     stamInfo, magicInfo, dexInfo, strInfo, ptsString, statusText(_isBlind,_isDeaf,_isCrippled,_isDumb),
     MUDKIP_Mud2:getVersion()
   )
