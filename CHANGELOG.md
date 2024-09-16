@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.3.4
+
+*16/9/2024*
+
+* Found workaround for issue which turned the helpful tooltips on the stamina/magic bars into unreadable black rectangles.
+
 ## 1.3.3
 
 *24/7/2024*
@@ -10,7 +16,7 @@
 
 *27/6/2024*
 
-* MUDKIP now recognizes the stamina update thing from `fightbrief` (hopefully)
+* MUDKIP now recognizes the stamina update messages from `fightbrief` (hopefully)
 
 ## 1.3.1
 

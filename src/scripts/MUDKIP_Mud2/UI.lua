@@ -29,6 +29,13 @@ M2UI.topPanel =
   }
 )
 
+local tooltipStyles = Geyser.StyleSheet:new([[
+  QToolTip {
+    background-color: LightYellow;
+    color: black;
+  }
+]])
+
 M2UI.stambar =
   Geyser.Gauge:new(
     {
@@ -39,10 +46,7 @@ M2UI.stambar =
     },
     M2UI.bottomPanel
   )
-
---M2UI.stambar.text:setStyleSheet([[
---  qproperty-font: ]].. getFontSize() .. [[pt ]]..getFont()..[[;
---]])
+M2UI.stambar.text:setStyleSheet(tooltipStyles:getCSS());
 
 M2UI.magicbar =
   Geyser.Gauge:new(
@@ -54,11 +58,7 @@ M2UI.magicbar =
     },
     M2UI.bottomPanel
   )
-
-
---M2UI.magicbar.text:setStyleSheet([[
---  qproperty-font: ]].. getFontSize() .. [[pt ]]..getFont()..[[;
---]])
+M2UI.magicbar.text:setStyleSheet(tooltipStyles:getCSS());
 
 
 M2UI.stambar:setColor("#00cc00")

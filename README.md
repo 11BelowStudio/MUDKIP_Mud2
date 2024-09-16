@@ -2,14 +2,9 @@
 
 ## Multi User Dungeon Kool Informational Package (for playing MUD2 with Mudlet)
 
-**MUDKIP** is a plucky little [Mudlet](https://www.mudlet.org) package
-I bodged together, which adds some Kool Informational Panels
-that might be of use whilst one is playing *MUD2*.
+**MUDKIP** is a plucky little [Mudlet](https://www.mudlet.org) package I bodged together, which adds some Kool Informational Panels that might be of use whilst one is playing *MUD2*.
 
-It adds some gauges at the bottom to show your current stamina
-and magic (assuming you have any magic) at a glance, and adds
-a status bar across the top with the raw stats on them (along
-with afflictions, the dreamword, current points, etc.)
+It adds some gauges at the bottom to show your current stamina and magic (assuming you have any magic) at a glance, and adds a status bar across the top with the raw stats on them (along with afflictions, the dreamword, current points, etc.)
 
 This is a plugin for Mudlet, *not a standalone MUD client!*
 Please ensure you have Mudlet installed and are using Mudlet.
@@ -17,7 +12,7 @@ Please ensure you have Mudlet installed and are using Mudlet.
 And, again, this is *only intended to be used for MUD2!*
 This is very unlikely to work on any other MUD, so don't try it.
 
-also yes, we have auto-updates now (very nice)
+also yes, we have auto-updates (very nice)
 
 ![a screenshot of MUDKIP being used in mudlet](/docs/readme.png)
 
@@ -39,17 +34,17 @@ Open your MUD2 profile in mudlet and enter this command:
 
 ## Usage
 
-The main thing *MUDKIP* does is add the status indicators
-mentioned above. It shows your stats at a glance, current
-status afflictions, current weather, time until the next reset,
-and the most recent dreamword you received.
+The main thing *MUDKIP* does is add the status indicators mentioned above, showing:
 
-The only automation it currently offers is sending a `fes`
-every so often whilst in-game (to obtain the current status of
-your persona), and an alias for saying the dreamword (if known)
+* Your stats (stamina, magic, strength, dexterity, points)
+* Current status afflictions (if any)
+* The weather
+* Time until the next reset
+* Most recent dreamword (if known)
 
-**MUDKIP** unfortunately does *not* offer those bells and
-whistles like speedwalking, fancy maps, re-fighting, etc.
+The only automation it currently offers is sending a `fes` every so often whilst in-game (to update the stats), and an alias for saying the dreamword (if known)
+
+**MUDKIP** unfortunately does *not* offer those bells and whistles like speedwalking, fancy maps, re-fighting, etc.
 
 ### Aliases
 
@@ -79,19 +74,16 @@ whistles like speedwalking, fancy maps, re-fighting, etc.
 
 ## Final thoughts, how to contribute, thanks, things like that
 
-*MUDKIP* is still a bit scuffed, and some of the implementation
-details could use a bit of cleaning up. If you do want to help
-out, feel free to open a PR on the `develop` branch.
+*MUDKIP* is still a bit scuffed, and some of the implementation details could use a bit of cleaning up.
+If you do want to help out, feel free to open a PR on the `develop` branch.
 
-This package was built using [muddler](https://github.com/demonnic/muddler),
-in case you were wondering.
-Consider taking a look at the documentation of muddler
-if you wish to contribute to the development of *MUDKIP*.
+This package was built using [muddler](https://github.com/demonnic/muddler), in case you were wondering.
+Consider taking a look at the documentation of muddler if you wish to contribute to the development of *MUDKIP*.
 
 ## CHANGELOG
 
-* **1.3.3** (`24/7/2024`)
-  * Made MUDKIP look a bit less horrible on Mudlet 4.18.3
+* **1.3.4** (`16/9/2024`)
+  * Found workaround for issue which turned the helpful tooltips on the stamina/magic bars into unusable black rectangles.
 
 See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/blob/main/CHANGELOG.md) for the full changelog.
 
