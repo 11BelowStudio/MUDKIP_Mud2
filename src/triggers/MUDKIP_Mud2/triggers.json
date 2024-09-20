@@ -134,7 +134,7 @@
     "isActive": "yes",
     "patterns": [
       {
-        "pattern":"^(\\*)?eff str (?<effStr>\\d+)\\h*eff dex (?<effDex>\\d+)\\h*sta (?<sta>\\d+)/(?<maxSta>\\d+)\\h*(mag (?<mag>\\d+)\\h*)?pts (?<pts>\\d+(,\\d+)*).*$",
+        "pattern":"^(\\*)?eff str (?<effStr>\\d+)\\h*eff dex (?<effDex>\\d+)\\h*sta (?<sta>\\d+)\/(?<maxSta>\\d+)\\h*(mag (?<mag>\\d+)\\h*)?pts (?<pts>\\d+(,\\d+)*).*$",
         "type": "regex"
       }
     ]
@@ -148,7 +148,7 @@
         "type": "regex"
       },
       {
-        "pattern":"^(\\*)?Stamina=(?<stam>\\d+)/(?<maxStam>\\d+)\\.$",
+        "pattern":"^(\\*)?Stamina=(?<stam>\\d+)\/(?<maxStam>\\d+)\\.$",
         "type": "regex"
       },
       {
@@ -156,7 +156,7 @@
         "type": "regex"
       },
       {
-        "pattern": "^(The )?(\\S+ )*\\S+ hits you \\((?<stam>\\d+)/(?<maxStam>\\d+)\\).$",
+        "pattern": "^(The )?(\\S+ )*\\S+ hits you \\((?<stam>\\d+)\/(?<maxStam>\\d+)\\).$",
         "type": "regex"
       }
     ]
