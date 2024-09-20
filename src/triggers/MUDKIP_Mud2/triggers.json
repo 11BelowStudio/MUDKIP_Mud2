@@ -134,7 +134,7 @@
     "isActive": "yes",
     "patterns": [
       {
-        "pattern":"^(\\*)?eff str (?<effStr>\\d+)\\h*eff dex (?<effDex>\\d+)\\h*sta (?<sta>\\d+)/(?<maxSta>\\d+)\\h*(mag (?<mag>)\\h*)?pts (?<pts>\\d+(,\\d+)*).*$",
+        "pattern":"^(\\*)?eff str (?<effStr>\\d+)\\h*eff dex (?<effDex>\\d+)\\h*sta (?<sta>\\d+)/(?<maxSta>\\d+)\\h*(mag (?<mag>\\d+)\\h*)?pts (?<pts>\\d+(,\\d+)*).*$",
         "type": "regex"
       }
     ]
@@ -185,6 +185,21 @@
             "type": "regex"
           }
         ]
+      }
+    ]
+  },
+  {
+    "name": "spell_used_autofes",
+    "isActive": "yes",
+    "multiline": "yes",
+    "patterns": [
+      {
+        "pattern":"15,0",
+        "type": "color"
+      },
+      {
+        "pattern":"^Your spell (work|fail)ed!$",
+        "type":"regex"
       }
     ]
   }

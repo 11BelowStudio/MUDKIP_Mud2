@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.3.5
+
+*20/9/2024*
+
+* Fixed bug that made MUDKIP not respond to `qs` when using a persona who has magic.
+* Added a couple of triggers to (hopefully) update one's stats if after using a spell.
+* (I have a persona who has magic again so I've only just noticed and fixed these issues xd)
+
 ## 1.3.4
 
 *16/9/2024*
