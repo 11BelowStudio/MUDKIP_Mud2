@@ -1,4 +1,5 @@
-if copy2decho() ~= "<0,0,255:0,0,0>*<r>" then
+local c2d = copy2decho()
+if not ((c2d == "<0,0,255:0,0,0>*<r>") or (c2d == "<0,0,255:0,0,0>(*)<r>")) then
   return
 end
 
