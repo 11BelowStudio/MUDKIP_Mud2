@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.3.6
+
+*10/10/2024*
+
+* Changed the blanked-out line placeholder to be something that MUD2 genuinely cannot comprehend (I think) but hopefully won't accidentally cause mishaps to happen
+* (theoretically) added support for being invisible
+
 ## 1.3.5
 
 *20/9/2024*
