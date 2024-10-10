@@ -82,10 +82,9 @@ Consider taking a look at the documentation of muddler if you wish to contribute
 
 ## CHANGELOG
 
-* **1.3.5** (`20/9/2024`)
-  * Fixed bug that made MUDKIP not respond to `qs` when using a persona who has magic.
-  * Added a couple of triggers to (hopefully) update one's stats after using a spell.
-  * (I have a persona who has magic again so I've only just noticed and fixed these issues xd)
+* **1.3.6** (`10/10/2024`)
+  * Changed the blanked-out line placeholder to be something that MUD2 genuinely cannot comprehend (I think) but hopefully won't accidentally cause mishaps to happen
+  * (theoretically) added support for being invisible
 
 See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/blob/main/CHANGELOG.md) for the full changelog.
 

@@ -52,7 +52,7 @@
     "isActive": "yes",
     "patterns": [
       {
-        "pattern":"^(?<prefix>\\*?)(?<sta>\\d+) (?<maxSta>\\d+) (?<effStr>\\d+) (?<str>\\d+) (?<effDex>\\d+) (?<dex>\\d+) (?<mag>\\d+) (?<maxMag>\\d+) (?<pts>\\d+) (?<blind>[YN]) (?<deaf>[YN]) (?<crip>[YN]) (?<dumb>[YN]) (?<mins>\\d+) (?<weather>\\w+)$",
+        "pattern":"^(?<prefix>(\\(?\\*\\)?)?)(?<sta>\\d+) (?<maxSta>\\d+) (?<effStr>\\d+) (?<str>\\d+) (?<effDex>\\d+) (?<dex>\\d+) (?<mag>\\d+) (?<maxMag>\\d+) (?<pts>\\d+) (?<blind>[YN]) (?<deaf>[YN]) (?<crip>[YN]) (?<dumb>[YN]) (?<mins>\\d+) (?<weather>\\w+)$",
         "type": "regex"
       }
     ]
@@ -78,8 +78,8 @@
     "isActive": "yes",
     "patterns": [
       {
-        "pattern":"*",
-        "type": "exactMatch"
+        "pattern":"\\(?\\*\\)?",
+        "type": "regex"
       }
     ]
   },
@@ -120,11 +120,11 @@
     "isActive": "yes",
     "patterns": [
       {
-        "pattern":"^(\\*)?\\(Persona saved on (?<pts>\\d+(,\\d+)*)\\).$",
+        "pattern":"^(\\(?\\*\\)?)?\\(Persona saved on (?<pts>\\d+(,\\d+)*)\\).$",
         "type": "regex"
       },
       {
-        "pattern":"^(\\*)?\\(Persona saved on [-+]\\d+(,\\d+)* = (?<pts>\\d+(,\\d+)*)\\).$",
+        "pattern":"^(\\(?\\*\\)?)?\\(Persona saved on [-+]\\d+(,\\d+)* = (?<pts>\\d+(,\\d+)*)\\).$",
         "type": "regex"
       }
     ]
@@ -134,7 +134,7 @@
     "isActive": "yes",
     "patterns": [
       {
-        "pattern":"^(\\*)?eff str (?<effStr>\\d+)\\h*eff dex (?<effDex>\\d+)\\h*sta (?<sta>\\d+)\/(?<maxSta>\\d+)\\h*(mag (?<mag>\\d+)\\h*)?pts (?<pts>\\d+(,\\d+)*).*$",
+        "pattern":"^(\\(?\\*\\)?)?eff str (?<effStr>\\d+)\\h*eff dex (?<effDex>\\d+)\\h*sta (?<sta>\\d+)\/(?<maxSta>\\d+)\\h*(mag (?<mag>\\d+)\\h*)?pts (?<pts>\\d+(,\\d+)*).*$",
         "type": "regex"
       }
     ]
@@ -144,15 +144,15 @@
     "isActive": "yes",
     "patterns": [
       {
-        "pattern":"^(\\*)?Your stamina has fallen from \\d+ to (?<stam>\\d+)\\.$",
+        "pattern":"^(\\(?\\*\\)?)?Your stamina has fallen from \\d+ to (?<stam>\\d+)\\.$",
         "type": "regex"
       },
       {
-        "pattern":"^(\\*)?Stamina=(?<stam>\\d+)\/(?<maxStam>\\d+)\\.$",
+        "pattern":"^(\\(?\\*\\)?)?Stamina=(?<stam>\\d+)\/(?<maxStam>\\d+)\\.$",
         "type": "regex"
       },
       {
-        "pattern":"^(\\*)?Your stamina is (?<stam>\\d+)\\.$",
+        "pattern":"^(\\(?\\*\\)?)?Your stamina is (?<stam>\\d+)\\.$",
         "type": "regex"
       },
       {

@@ -104,7 +104,7 @@ if not MUDKIP_Mud2 then
   end
 
   -- hopefully nobody is going to be able to output this exact line.
-  MUDKIP_Mud2._BLANK = '!!~MUDKIPBLANK~!! ".fo.qq. ".fo.qq.$!!~MUDKIPBLANK~!!'
+  MUDKIP_Mud2._BLANK = '¬¬¬¬¬¬¬¬¬¬mudkipblank¬¬¬¬¬¬¬¬¬¬¬'
 
   function MUDKIP_Mud2:getBlankReplacePlaceholder()
     return self._BLANK
