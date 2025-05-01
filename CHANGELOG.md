@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.3.7
+
+*1/5/2025*
+
+* Fixed a bug which causes the user to be flooded with `(*)` lines whilst invis (this will no longer happen).
+
 ## 1.3.6
 
 *10/10/2024*

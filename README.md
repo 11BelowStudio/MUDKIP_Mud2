@@ -82,9 +82,8 @@ Consider taking a look at the documentation of muddler if you wish to contribute
 
 ## CHANGELOG
 
-* **1.3.6** (`10/10/2024`)
-  * Changed the blanked-out line placeholder to be something that MUD2 genuinely cannot comprehend (I think) but hopefully won't accidentally cause mishaps to happen
-  * (theoretically) added support for being invisible
+* **1.3.7** (`1/5/2025`)
+  * Fixed a bug which causes the user to be flooded with `(*)` lines whilst invis (this will no longer happen).
 
 See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/blob/main/CHANGELOG.md) for the full changelog.
 
@@ -92,3 +91,4 @@ See [CHANGELOG.md](https://github.com/11BelowStudio/MUDKIP_Mud2/blob/main/CHANGE
 
 * see what people want I guess
 * get the auto-update to check the tag on the latest release on git or something like that instead of the release version.txt(?)
+* possibly move the auto-update to <https://packages.mudlet.org/> (or otherwise upload this package there - may or may not conflict with the current autoupdate method though)
