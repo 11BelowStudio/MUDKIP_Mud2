@@ -4,7 +4,7 @@ if true then
 
 	local blankText = MUDKIP_Mud2:getBlankReplacePlaceholder()
 
-  if matches.prefix == "*" then
+  if matches.prefix then
 		replaceLine(blankText)
     deleteLine()
   else
