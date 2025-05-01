@@ -1,5 +1,7 @@
 # MUDKIP_Mud2
 
+<https://github.com/11BelowStudio/MUDKIP_Mud2>
+
 ## Multi User Dungeon Kool Informational Package (for playing MUD2 with Mudlet)
 
 **MUDKIP** is a plucky little [Mudlet](https://www.mudlet.org) package I bodged together, which adds some Kool Informational Panels that might be of use whilst one is playing *MUD2*.
@@ -75,7 +77,7 @@ The only automation it currently offers is sending a `fes` every so often whilst
 ## Final thoughts, how to contribute, thanks, things like that
 
 *MUDKIP* is still a bit scuffed, and some of the implementation details could use a bit of cleaning up.
-If you do want to help out, feel free to open a PR on the `develop` branch.
+If you do want to help out, feel free to open a PR on the `develop` branch on [the MUDKIP_Mud2 repository](https://github.com/11BelowStudio/MUDKIP_Mud2).
 
 This package was built using [muddler](https://github.com/demonnic/muddler), in case you were wondering.
 Consider taking a look at the documentation of muddler if you wish to contribute to the development of *MUDKIP*.
